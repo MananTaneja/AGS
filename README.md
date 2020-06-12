@@ -15,4 +15,4 @@ npm install
 npm run dev
 cd ..
 npm run server
-~~~
+```
