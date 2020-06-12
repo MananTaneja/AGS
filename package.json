@@ -4,7 +4,8 @@
   "description": "QR code app to order items from a restaurant",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "server": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/MananTaneja/AGS/issues"
   },
-  "homepage": "https://github.com/MananTaneja/AGS#readme"
+  "homepage": "https://github.com/MananTaneja/AGS#readme",
+  "dependencies": {
+    "concurrently": "^5.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
 }
