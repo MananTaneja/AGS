@@ -1,0 +1,19 @@
+{
+  "name": "ags",
+  "version": "1.0.0",
+  "description": "QR code app to order items from a restaurant",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MananTaneja/AGS.git"
+  },
+  "author": "Manan Taneja",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MananTaneja/AGS/issues"
+  },
+  "homepage": "https://github.com/MananTaneja/AGS#readme"
+}
