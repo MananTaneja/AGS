@@ -1,4 +1,5 @@
 const express = require('express');
+const con = require('./config/db');
 
 const app = express();
 const path = require('path');
@@ -8,6 +9,14 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname+'/home.html'));
 })
 
+
+app.get('/connect', (req,res) => {
+    con.query("SELECT id, name FROM users", (err, res, fields) => {
+        if(err) throw err;
+        console.log(fields);
+        
+    });
+});
 
 const mcd = require('./merchants/mcdonalds');
 
