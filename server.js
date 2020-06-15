@@ -14,7 +14,7 @@ app.get('/connect', (req,res) => {
     con.query("SELECT id, name FROM merchants", (err, res, fields) => {
         if(err) throw err;
         console.log(fields);
-        
+        res.sendFile(path.join(__dirname+'/home.html'));
     });
 });
 
