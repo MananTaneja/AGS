@@ -1,5 +1,5 @@
 const express = require('express');
-// const con = require('./config/db');
+const con = require('./config/db');
 
 const app = express();
 const path = require('path');
@@ -10,13 +10,13 @@ app.get('/', (req, res) => {
 })
 
 
-// app.get('/connect', (req,res) => {
-//     con.query("SELECT id, name FROM users", (err, res, fields) => {
-//         if(err) throw err;
-//         console.log(fields);
+app.get('/connect', (req,res) => {
+    con.query("SELECT id, name FROM merchants", (err, res, fields) => {
+        if(err) throw err;
+        console.log(fields);
         
-//     });
-// });
+    });
+});
 
 const mcd = require('./merchants/mcdonalds');
 
