@@ -5,7 +5,9 @@ tables = [
     'table2',
     'table3',
     'table4',
-    'table5'
+    'table5',
+    'table6',
+    'table7'
 ]
 
 # need to use aes algorithm to encode information such as table number, etc into the qrcode
