@@ -4,7 +4,7 @@ const con = mysql.createConnection({
     host: 'database-2.cgqf9yydttci.us-east-2.rds.amazonaws.com',
     user: 'admin',
     password: 'password',
-    database: 'agsdb',
+    database: 'Restaurant',
 });
 
 con.connect((err) => {
