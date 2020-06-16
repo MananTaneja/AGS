@@ -1,18 +1,14 @@
 # QR Based Ordering App for Restaurants
 
-## Commands to setup 
+A solution that leverages user's phone camera to order in the restaurant!
 
-```
-npm install
-```
+## Commands to setup
 
-```
-cd client-side-web
-npm install
-```
-
-```
-npm run dev
-cd ..
-npm run server
-```
+1. Install dependencies in root folder and client-web folder using:
+   ```
+   npm install
+   ```
+2. To run both front end and server together
+   ```
+   npm run dev
+   ```
