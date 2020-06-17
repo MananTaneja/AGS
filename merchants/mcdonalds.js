@@ -9,8 +9,13 @@ router.get("/table/:table_id", (req, res) => {
 
 router.get("/menudetails", (req, res) => {
   console.log("the client side is requesting for menu details");
-
-  res.json(menuData);
+  con.query(
+    "SELECT id, MenuItem, ItemPrice, Category from McdMenu",
+    (err, result, fields) => {
+      if (err) throw err;
+      res.json(result);
+    }
+  );
 });
 
 module.exports = router;
