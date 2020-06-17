@@ -7,7 +7,8 @@ const Index = (props) => (
   <Layout>
     <div>
       <h2>Menu</h2>
-      <Menu menu={props.menu} />
+      {console.log(props)}
+      <Menu menu={props.json} />
       <style jsx>{`
         h2 {
           text-align: center;
@@ -18,11 +19,13 @@ const Index = (props) => (
   </Layout>
 );
 
-Index.getInitialProps = async (context) => {
+export const getStaticProps = async (context) => {
   const res = await fetch("http://localhost:5000/mcdonalds/menudetails");
   const json = await res.json();
   return {
-    menu: json,
+    props: {
+      json,
+    },
   };
 };
 
