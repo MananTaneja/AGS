@@ -1,24 +1,22 @@
-const express = require('express');
-const con = require('./config/db');
+const express = require("express");
+const con = require("./config/db");
 
 const app = express();
-const path = require('path');
+const path = require("path");
 const port = 5000;
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname+'/home.html'));
-})
-
-
-app.get('/connect', (req,res) => {
-    con.query("Select * from Merchant", (err, res, fields) => {
-        console.log(fields);
-    });
+app.get("/", (req, res) => {
+  res.redirect("http://localhost:3000/login");
 });
 
-const mcd = require('./merchants/mcdonalds');
+app.get("/connect", (req, res) => {
+  con.query("Select * from Merchant", (err, res, fields) => {
+    console.log(fields);
+  });
+});
 
-app.use('/mcdonalds', mcd);
+const mcd = require("./merchants/mcdonalds");
 
+app.use("/mcdonalds", mcd);
 
 app.listen(port, () => console.log(`Server started on port ${port}`));

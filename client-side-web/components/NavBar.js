@@ -8,7 +8,7 @@ const Navbar = () => {
           <Link href="/">
             <li className="nav-item">
               <a className="nav-link" href="#">
-                Home <span className="sr-only">(current)</span>
+                Menu
               </a>
             </li>
           </Link>
@@ -16,6 +16,13 @@ const Navbar = () => {
             <li className="nav-item">
               <a className="nav-link" href="#">
                 Cart
+              </a>
+            </li>
+          </Link>
+          <Link href="./">
+            <li className="nav-item">
+              <a className="nav-link" href="#">
+                Waiter
               </a>
             </li>
           </Link>

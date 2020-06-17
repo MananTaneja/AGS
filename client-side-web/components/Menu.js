@@ -1,4 +1,4 @@
-class DisplayMenu extends React.Component {
+class Menu extends React.Component {
   state = {};
 
   render() {
@@ -13,4 +13,4 @@ class DisplayMenu extends React.Component {
   }
 }
 
-export default DisplayMenu;
+export default Menu;
