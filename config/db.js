@@ -1,9 +1,15 @@
 const Sequelize = require("sequelize");
+const keys = require("./keys");
 
-const sequelize = new Sequelize("Restaurant", "admin", "password", {
-  host: "database-2.cgqf9yydttci.us-east-2.rds.amazonaws.com",
-  dialect: "mysql",
-});
+const sequelize = new Sequelize(
+  "Restaurant",
+  keys.dbUserName,
+  keys.dbPassword,
+  {
+    host: keys.dbHostname,
+    dialect: "mysql",
+  }
+);
 
 sequelize
   .authenticate()
