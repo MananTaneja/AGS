@@ -38,77 +38,62 @@ class Login extends React.Component {
   render() {
     return (
       <Layout>
-        <div className="login">
-          <form action="http://localhost:5000/login" method="POST">
-            <h1>WELCOME TO MCD</h1>
-            <div className="details">
-              <p>Phone Number</p>
-              <input
-                type="text"
-                placeholder="Enter Phonenumber"
-                name="phoneNumber"
-                value={this.state.phoneNumber}
-                onChange={this.onChange}
-                required
-              />
-              <br />
-              <p>Name</p>
-              <input
-                type="text"
-                placeholder="Enter Name"
-                name="name"
-                value={this.state.name}
-                onChange={this.onChange}
-                required
-              />
-              <br />
-              <br></br>
-              <button className="btn" type="submit" value="Submit" />
-              <br></br>
-              <br></br>
+        <div className="container">
+          <div className="card d-flex mt-3 pt-3">
+            <img
+              src="https://images.unsplash.com/photo-1533035353720-f1c6a75cd8ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+              className="card-img-top border border-dark rounded-circle"
+              alt="qsr"
+            />
+            <div className="card-body">
+              <form
+                action="http://localhost:5000/login"
+                method="POST"
+                className="d-flex flex-column"
+              >
+                <div className="form-group">
+                  <label for="phoneNumber">Phone Number</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter Phone Number"
+                    name="phoneNumber"
+                    value={this.state.phoneNumber}
+                    onChange={this.onChange}
+                    required
+                  />
+                  <small className="form-text text-muted">
+                    Just for logging you in session!
+                  </small>
+                </div>
+                <div className="form-group">
+                  <label for="phoneNumber">Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter Name"
+                    name="name"
+                    value={this.state.name}
+                    onChange={this.onChange}
+                    required
+                  />
+                  <small className="form-text text-muted">
+                    For Billing Purposes
+                  </small>
+                </div>
+                <button className="btn btn-dark" type="submit" value="Submit">
+                  Submit
+                </button>
+              </form>
             </div>
-          </form>
+          </div>
           <style jsx>{`
-          input[type=text]{
-              padding: 12px 8px;
-              margin: 8px 0;
-              display: inline-block;
-              width: 75%;
-              border: 1.7px solid black;
-              background-color: #FFFFF0;
-              color: black;
-              box-sizing: border-box;
-              transition: width 0.4s ease-in-out;
-              
+            img {
+              height: 10rem;
+              width: 10rem;
+              margin: auto;
             }
-            input[type=text]:focus {
-              width: 85%
-            }
-            input[type=submit] {
-              width: 75%;
-              padding: 10px 15px;
-              border: 2px ;
-              border-radius: 35px; 
-              background-color: #4CAF50;
-              color: white;
-              box-sizing: border-box;
-            }
-          h1 {
-            text-align: center;
-            font
-            margin-bottom: 2rem;
-             }
-          .login{
-              justify-content: center;
-              flex-direction: row;
-              text-align: left;
-              margin: 50px 50px 40px;
-               }
-          form {
-              text-align:center;
-              border: 10px solid #FFD403;
-            }
-        `}</style>
+          `}</style>
         </div>
       </Layout>
     );
