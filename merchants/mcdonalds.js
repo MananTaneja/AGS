@@ -7,6 +7,8 @@ router.get("/table/:table_id", (req, res) => {
   res.redirect("http://localhost:3000/");
 });
 
+
+
 router.get("/menudetails", (req, res) => {
   console.log("the client side is requesting for menu details");
   con.query(
