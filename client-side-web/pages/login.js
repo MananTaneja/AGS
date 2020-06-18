@@ -1,35 +1,38 @@
-import React from 'react';
+// const divStyle ={
+//     //color: "blue",
+//     //display: flex,
+//     //justify-content: "center",
+//     fontfamily: "Roboto, Arial, sans-serif",
+//     //font-size: 15px,
+//     padding: "10px",
+//     fontFamily: "Bradley Hand, cursive"
 
-
-const divStyle ={
-    //color: "blue",
-    //display: flex,
-    //justify-content: "center",
-    fontfamily: "Roboto, Arial, sans-serif",
-    //font-size: 15px,
-    padding: "10px",
-    fontFamily: "Bradley Hand, cursive"
-
-};
+// };
 
 const login = () => {
-    return (
-        
-    <div className="login" >
-        <form action="http://localhost:5000/login" method="POST">
-            <h1>WELCOME TO MCD</h1>
-                <div className="details" style={divStyle}>
-                    <p>Phone Number</p>
-                        <input type="text" placeholder="Enter Phonenumber" name="phonenumber" required/>
-                            <br/>
-                    <p>Name</p>
-                        <input type="text" placeholder="Enter Name" name="name" required/>
-                            <br/><br></br>
-                        <input type="submit" value="Submit"/>
-                        <br></br><br></br>
-                </div>
-        </form>
-        <style jsx>{`
+  return (
+    <div className="login">
+      <form action="http://localhost:5000/login" method="POST">
+        <h1>WELCOME TO MCD</h1>
+        <div className="details">
+          <p>Phone Number</p>
+          <input
+            type="text"
+            placeholder="Enter Phonenumber"
+            name="phoneNumber"
+            required
+          />
+          <br />
+          <p>Name</p>
+          <input type="text" placeholder="Enter Name" name="name" required />
+          <br />
+          <br></br>
+          <input type="submit" value="Submit" />
+          <br></br>
+          <br></br>
+        </div>
+      </form>
+      <style jsx>{`
         input[type=text]{
             padding: 12px 8px;
             margin: 8px 0;
@@ -69,11 +72,9 @@ const login = () => {
             text-align:center;
             border: 10px solid #FFD403;
           }
-      `}</style>                
-
+      `}</style>
     </div>
-    );
-  };
-  
-  export default login;
-  
+  );
+};
+
+export default login;

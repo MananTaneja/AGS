@@ -1,16 +1,21 @@
-const mysql = require('mysql');
+const Sequelize = require("sequelize");
 
-const con = mysql.createConnection({
-    host: 'database-2.cgqf9yydttci.us-east-2.rds.amazonaws.com',
-    user: 'admin',
-    password: 'password',
-    database: 'Restaurant',
+const sequelize = new Sequelize("Restaurant", "admin", "password", {
+  host: "database-2.cgqf9yydttci.us-east-2.rds.amazonaws.com",
+  dialect: "mysql",
 });
 
-con.connect((err) => {
-    if(err) throw err;
-    console.log("Connection established");
-});
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Connection has been established successfully");
+  })
+  .catch((err) => {
+    console.error("Unable to connect to the database:", err);
+  });
 
+// To update database according to model
+// WARNING: WILL DELETE ALL THE DATA
+// sequelize.sync();
 
-module.exports = con;
+module.exports = sequelize;
