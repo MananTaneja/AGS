@@ -1,6 +1,7 @@
-import Fetch from "isomorphic-unfetch";
+// import Fetch from "isomorphic-unfetch";
 import Layout from "../components/Layout";
-
+import { Provider } from "react-redux";
+import { createStore } from "redux";
 import Menu from "../components/Menu";
 
 const Index = (props) => (

@@ -52,7 +52,7 @@ class Login extends React.Component {
                 className="d-flex flex-column"
               >
                 <div className="form-group">
-                  <label for="phoneNumber">Phone Number</label>
+                  <label htmlFor="phoneNumber">Phone Number</label>
                   <input
                     type="text"
                     className="form-control"
@@ -67,7 +67,7 @@ class Login extends React.Component {
                   </small>
                 </div>
                 <div className="form-group">
-                  <label for="phoneNumber">Name</label>
+                  <label htmlFor="phoneNumber">Name</label>
                   <input
                     type="text"
                     className="form-control"
