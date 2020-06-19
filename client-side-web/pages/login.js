@@ -1,4 +1,6 @@
 import Layout from "../components/Layout";
+import { connect } from "react-redux";
+import { loginUser } from "../redux/actions/authActions";
 
 class Login extends React.Component {
   constructor() {
@@ -8,36 +10,40 @@ class Login extends React.Component {
       name: "",
     };
     this.onChange = this.onChange.bind(this);
-    // this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  // onSubmit(event) {
-  //   event.preventDefault();
+  onSubmit(event) {
+    event.preventDefault();
 
-  //   const newUser = {
-  //     phoneNumber: this.state.phoneNumber,
-  //     name: this.state.name,
-  //   };
+    const newUser = {
+      phoneNumber: this.state.phoneNumber,
+      name: this.state.name,
+    };
+    this.props.loginUser(newUser);
 
-  //   axios
-  //     .post("http://localhost:5000/login", newUser)
-  //     .then((res) => {
-  //       console.log(res);
-  //       this.setState({
-  //         name: "",
-  //         phoneNumber: "",
-  //       });
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
+    // axios
+    //   .post("http://localhost:5000/login", newUser)
+    //   .then((res) => {
+    //     console.log(res);
+    //     this.setState({
+    //       name: "",
+    //       phoneNumber: "",
+    //     });
+    //   })
+    //   .catch((err) => console.log(err));
+  }
 
   render() {
+    const user = this.props.auth.user;
+
     return (
       <Layout>
+        <h1>{user ? user.name : null}</h1>
         <div className="container">
           <div className="card d-flex mt-3 pt-3">
             <img
@@ -47,8 +53,9 @@ class Login extends React.Component {
             />
             <div className="card-body">
               <form
-                action="http://localhost:5000/login"
-                method="POST"
+                // action="http://localhost:5000/login"
+                // method="POST"
+                onSubmit={this.onSubmit}
                 className="d-flex flex-column"
               >
                 <div className="form-group">
@@ -100,4 +107,8 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { loginUser })(Login);
