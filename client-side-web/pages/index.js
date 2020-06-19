@@ -8,7 +8,6 @@ const Index = (props) => (
   <Layout>
     <div>
       <h2>Menu</h2>
-      {console.log(props)}
       <Menu menu={props.json} />
       <style jsx>{`
         h2 {
