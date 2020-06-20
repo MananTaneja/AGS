@@ -31,7 +31,7 @@ router.post("/", (req, res) => {
       jwt.sign(
         customerData,
         keys.secretOrKey,
-        { expiresIn: 3600 },
+        { expiresIn: 20 },
         (err, token) => {
           console.log("Bearer " + token);
           res.json({

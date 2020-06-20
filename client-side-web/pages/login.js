@@ -34,7 +34,7 @@ class Login extends React.Component {
       name: this.state.name,
     };
     this.props.loginUser(userData);
-
+    Router.push("/profile", undefined, { shallow: true });
     // const res = await fetch("http://localhost:5000/login", {
     //   method: "post",
     //   headers: {
