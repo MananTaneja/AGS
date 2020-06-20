@@ -1,8 +1,9 @@
 import Layout from "../components/Layout";
 import axios from "axios";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 // import PropTypes from "prop-types";
-// import { loginUser } from "../redux/actions/authActions";
+import { loginUser } from "../redux/actions/authActions";
+import Router from "next/router";
 
 class Login extends React.Component {
   constructor() {
@@ -15,9 +16,9 @@ class Login extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/menu");
+      Router.push("/", undefined, { shallow: true });
     }
   }
 
@@ -25,33 +26,30 @@ class Login extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  onSubmit(event) {
+  onSubmit = async (event) => {
     event.preventDefault();
 
     const userData = {
       phoneNumber: this.state.phoneNumber,
       name: this.state.name,
     };
-    // this.props.loginUser(userData);
+    this.props.loginUser(userData);
 
-    axios
-      .post("/login", userData)
-      .then((res) => {
-        console.log(res);
-        this.setState({
-          name: "",
-          phoneNumber: "",
-        });
-      })
-      .catch((err) => console.log(err));
-  }
+    // const res = await fetch("http://localhost:5000/login", {
+    //   method: "post",
+    //   headers: {
+    //     Accept: "application/json, text/plain, */*",
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(userData),
+    // });
+    // const json = await res.json();
+    // console.log(json);
+  };
 
   render() {
-    // const user = this.props.auth.user;
-
     return (
       <Layout>
-        {/* <h1>{user ? user.name : null}</h1> */}
         <div className="container">
           <div className="card d-flex mt-3 pt-3">
             <img
@@ -120,9 +118,9 @@ class Login extends React.Component {
 //   auth: PropTypes.object.isRequired
 // }
 
-// const mapStateToProps = (state) => ({
-// auth: state.auth,
-// });
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
 
-// export default connect(mapStateToProps, { loginUser })(Login);
-export default Login;
+export default connect(mapStateToProps, { loginUser })(Login);
+// export default Login;

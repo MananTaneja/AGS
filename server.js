@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 // const con = require("./config/db");
 const bodyParser = require("body-parser");
 const passport = require("passport");
@@ -14,6 +15,9 @@ app.use(bodyParser.json());
 
 // // Passport config
 // require("./config/passport")(passport);
+
+// Cors Middleware
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.redirect("http://localhost:3000/login");

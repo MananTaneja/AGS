@@ -1,28 +1,31 @@
 import { GET_ERRORS, SET_CURRENT_USER } from "./types";
-import axios from "axios";
+
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 
 export const loginUser = (userData) => (dispatch) => {
-  axios
-    .post("/login", userData)
-    .then((res) => {
-      // Save to local storage
-      const token = res.data.token;
-      // Setting token to local storage
-      localStorage.setItem("jwtToken", token);
-      // Set token to auth header
-      setAuthToken(token);
-      // Decode token to get user data
-      const decoded = jwt_decode(token);
-      // Set current User
-      dispatch(setCurrentUser(decoded));
-    })
-    .catch((err) =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: "Error",
-      })
+  fetch("http://localhost:5000/login", {
+    method: "post",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userData),
+  })
+    .then((res) => res.json())
+    .then(
+      (data) => {
+        const token = data.token;
+        localStorage.setItem("jwtToken", token);
+        setAuthToken(token);
+        const decoded = jwt_decode(token);
+        dispatch(setCurrentUser(decoded));
+      },
+      (err) =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: "Error",
+        })
     );
 };
 
@@ -34,3 +37,24 @@ export const setCurrentUser = (decoded) => {
     payload: decoded,
   };
 };
+
+// axios
+//     .post("/login", userData)
+//     .then((res) => {
+//       // Save to local storage
+//       const token = res.data.token;
+//       // Setting token to local storage
+//       localStorage.setItem("jwtToken", token);
+//       // Set token to auth header
+//       setAuthToken(token);
+//       // Decode token to get user data
+//       const decoded = jwt_decode(token);
+//       // Set current User
+//       dispatch(setCurrentUser(decoded));
+//     })
+//     .catch((err) =>
+//       dispatch({
+//         type: GET_ERRORS,
+//         payload: "Error",
+//       })
+//     );
