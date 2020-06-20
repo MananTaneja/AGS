@@ -7,17 +7,17 @@ class Menu extends React.Component {
     //this.addToCart = this.addToCart().bind(this);
   }
 
-  addToCart = () => {
-    this.setState((prevState) => {
-      this.setState({
-        order: prevState.order.push("prod"),
-      });
-    });
-  };
+  // addToCart = () => {
+  //   this.setState((prevState) => {
+  //     this.setState({
+  //       order: prevState.order.push("prod"),
+  //     });
+  //   });
+  // };
 
   render() {
     const menuItems = this.props.menu.map((product, key) => (
-      <li key="product.id">
+      <li key="product.ID">
         <div className="card mb-3">
           <div className="row no-gutters">
             <div className="col-md-4">
@@ -38,9 +38,10 @@ class Menu extends React.Component {
                 </p>
                 <p className="card-text ">Rs {product.ItemPrice}</p>
                 <p className="card-text">{product.Category}</p>
-                <button onClick={this.addToCart} className="btn btn-danger">
-                  Add to Cart
-                </button>
+                <button className="btn btn-danger">Add to Cart</button>
+                {/* <button onClick={this.addToCart} className="btn btn-danger">
+                Add to Cart
+                </button> */}
               </div>
             </div>
           </div>

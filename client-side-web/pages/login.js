@@ -1,6 +1,8 @@
 import Layout from "../components/Layout";
-import { connect } from "react-redux";
-import { loginUser } from "../redux/actions/authActions";
+import axios from "axios";
+// import { connect } from "react-redux";
+// import PropTypes from "prop-types";
+// import { loginUser } from "../redux/actions/authActions";
 
 class Login extends React.Component {
   constructor() {
@@ -13,6 +15,12 @@ class Login extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/menu");
+    }
+  }
+
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -20,30 +28,30 @@ class Login extends React.Component {
   onSubmit(event) {
     event.preventDefault();
 
-    const newUser = {
+    const userData = {
       phoneNumber: this.state.phoneNumber,
       name: this.state.name,
     };
-    this.props.loginUser(newUser);
+    // this.props.loginUser(userData);
 
-    // axios
-    //   .post("http://localhost:5000/login", newUser)
-    //   .then((res) => {
-    //     console.log(res);
-    //     this.setState({
-    //       name: "",
-    //       phoneNumber: "",
-    //     });
-    //   })
-    //   .catch((err) => console.log(err));
+    axios
+      .post("/login", userData)
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          name: "",
+          phoneNumber: "",
+        });
+      })
+      .catch((err) => console.log(err));
   }
 
   render() {
-    const user = this.props.auth.user;
+    // const user = this.props.auth.user;
 
     return (
       <Layout>
-        <h1>{user ? user.name : null}</h1>
+        {/* <h1>{user ? user.name : null}</h1> */}
         <div className="container">
           <div className="card d-flex mt-3 pt-3">
             <img
@@ -107,8 +115,14 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-});
+// Login.propTypes = {
+//   loginUser: PropTypes.func.isRequired,
+//   auth: PropTypes.object.isRequired
+// }
 
-export default connect(mapStateToProps, { loginUser })(Login);
+// const mapStateToProps = (state) => ({
+// auth: state.auth,
+// });
+
+// export default connect(mapStateToProps, { loginUser })(Login);
+export default Login;
