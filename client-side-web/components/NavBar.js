@@ -12,10 +12,10 @@ const Navbar = () => {
               </a>
             </li>
           </Link>
-          <Link href="./cart">
+          <Link href="./payment">
             <li className="nav-item">
               <a className="nav-link" href="#">
-                Cart
+                Payment
               </a>
             </li>
           </Link>

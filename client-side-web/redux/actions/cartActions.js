@@ -1,19 +1,17 @@
-import axios from "axios";
-import { GET_MENU_ITEMS, ERROR_FETCH_MENU } from "./types";
+import { ADD_TO_CART } from "./types";
 
-export const initialMenu = () => {
-  axios
-    .get(`http://localhost:5000/mcdonalds/menudetails`)
-    .then((res) =>
-      dispatch({
-        type: GET_MENU_ITEMS,
-        menu: res,
-      })
-    )
-    .catch((err) =>
-      dispatch({
-        type: ERROR_FETCH_MENU,
-        data: "Error in fetching menu",
-      })
-    );
+// export const addOrderToCart = (productId) => (dispatch) => {
+//   return {
+//     type: ADD_TO_CART,
+//     payload: productId,
+//   };
+// };
+
+const addToCartUnsafe = (productId) => ({
+  type: ADD_TO_CART,
+  productId,
+});
+
+export const addOrderToCart = (productId) => (dispatch) => {
+  dispatch(addToCartUnsafe(productId));
 };

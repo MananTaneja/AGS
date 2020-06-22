@@ -6,10 +6,6 @@ import { loginUser } from "../redux/actions/authActions";
 class Profile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      phoneNumber: "",
-      name: "",
-    };
   }
 
   render() {

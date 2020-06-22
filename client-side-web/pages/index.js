@@ -1,19 +1,15 @@
 // import Fetch from "isomorphic-unfetch";
 import Layout from "../components/Layout";
 
-import Menu from "./menu";
+import Menu from "../components/Menu";
+import MiniCart from "../components/MiniCart";
 
 const Index = (props) => (
   <Layout>
     <div>
-      <h2>Menu</h2>
       <Menu menu={props.json} />
-      <style jsx>{`
-        h2 {
-          text-align: center;
-          margin-bottom: 2rem;
-        }
-      `}</style>
+      <MiniCart />
+      <style jsx>{``}</style>
     </div>
   </Layout>
 );
