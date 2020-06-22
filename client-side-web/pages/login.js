@@ -1,5 +1,4 @@
 import Layout from "../components/Layout";
-import axios from "axios";
 import { connect } from "react-redux";
 // import PropTypes from "prop-types";
 import { loginUser } from "../redux/actions/authActions";
@@ -13,13 +12,11 @@ class Login extends React.Component {
       name: "",
       //error class
       errors: {
-        error1:"Just for logging you in session!",
-        errorcolor1:"black",
-        error2:"For Billing Purposes",
-        errorcolor2:"black"
-      }
-      
-      
+        error1: "Just for logging you in session!",
+        errorcolor1: "black",
+        error2: "For Billing Purposes",
+        errorcolor2: "black",
+      },
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -35,39 +32,39 @@ class Login extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
     //setting default span
     this.state.errors["error1"] = "Just for logging you in session!";
-    this.state.errors["errorcolor1"]="black";
+    this.state.errors["errorcolor1"] = "black";
     this.state.errors["error2"] = "For Billing Purposes";
-    this.state.errors["errorcolor2"]="black";
+    this.state.errors["errorcolor2"] = "black";
   }
 
   //form validation
-  handleValidation(){
+  handleValidation() {
     let phoneNumber = this.state.phoneNumber;
     let name = this.state.name;
     let errors = this.state.errors;
     let formIsValid = true;
 
     //validating phonenuber
-    if(typeof phoneNumber !== "undefined"){
-       if(!phoneNumber.match(/^\d{10}$/)){
-          formIsValid = false;
-          errors["error1"] = "*Enter a valid phonenumber";
-          errors["errorcolor1"]="red";
-       }        
+    if (typeof phoneNumber !== "undefined") {
+      if (!phoneNumber.match(/^\d{10}$/)) {
+        formIsValid = false;
+        errors["error1"] = "*Enter a valid phonenumber";
+        errors["errorcolor1"] = "red";
+      }
     }
     //validating name
-   if(typeof name !== "undefined"){
-      if(!name.match(/^[a-zA-Z\s-, ]+$/)){
-         formIsValid = false;
-         errors["error2"] = "*Enter a valid name";
-         errors["errorcolor2"]="red";
-      }        
-   }
+    if (typeof name !== "undefined") {
+      if (!name.match(/^[a-zA-Z\s-, ]+$/)) {
+        formIsValid = false;
+        errors["error2"] = "*Enter a valid name";
+        errors["errorcolor2"] = "red";
+      }
+    }
 
-   this.setState({errors: errors});
+    this.setState({ errors: errors });
 
-   return formIsValid;
-}
+    return formIsValid;
+  }
 
   onSubmit = async (event) => {
     event.preventDefault();
@@ -77,22 +74,10 @@ class Login extends React.Component {
       name: this.state.name,
     };
     //validating
-    if(this.handleValidation()){
+    if (this.handleValidation()) {
       this.props.loginUser(userData);
-    Router.push("/profile", undefined, { shallow: true });
-   }
-    // this.props.loginUser(userData);
-    // Router.push("/profile", undefined, { shallow: true });
-    // const res = await fetch("http://localhost:5000/login", {
-    //   method: "post",
-    //   headers: {
-    //     Accept: "application/json, text/plain, */*",
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(userData),
-    // });
-    // const json = await res.json();
-    // console.log(json);
+      Router.push("/profile", undefined, { shallow: true });
+    }
   };
   render() {
     return (
@@ -123,7 +108,9 @@ class Login extends React.Component {
                     required
                   />
                   <small>
-                  <span  style={{color: this.state.errors["errorcolor1"]}}>{this.state.errors["error1"]}</span>
+                    <span style={{ color: this.state.errors["errorcolor1"] }}>
+                      {this.state.errors["error1"]}
+                    </span>
                   </small>
                   {/* <small className="form-text text-muted">
                     Just for logging you in session!
@@ -141,7 +128,9 @@ class Login extends React.Component {
                     required
                   />
                   <small>
-                  <span  style={{color: this.state.errors["errorcolor2"]}}>{this.state.errors["error2"]}</span>
+                    <span style={{ color: this.state.errors["errorcolor2"] }}>
+                      {this.state.errors["error2"]}
+                    </span>
                   </small>
                   {/* <small className="form-text text-muted">
                     For Billing Purposes
@@ -176,4 +165,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { loginUser })(Login);
-// export default Login;

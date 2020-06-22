@@ -1,7 +1,7 @@
 // import Fetch from "isomorphic-unfetch";
 import Layout from "../components/Layout";
 
-import Menu from "../components/Menu";
+import Menu from "./menu";
 
 const Index = (props) => (
   <Layout>
@@ -19,7 +19,7 @@ const Index = (props) => (
 );
 
 export const getStaticProps = async (context) => {
-  const res = await fetch("http://localhost:5000/mcdonalds/menudetails");
+  const res = await fetch(`http://localhost:5000/mcdonalds/menudetails`);
   const json = await res.json();
   return {
     props: {
