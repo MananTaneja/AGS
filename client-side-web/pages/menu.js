@@ -7,19 +7,11 @@ class Menu extends React.Component {
     //this.addToCart = this.addToCart().bind(this);
   }
 
-  // addToCart = () => {
-  //   this.setState((prevState) => {
-  //     this.setState({
-  //       order: prevState.order.push("prod"),
-  //     });
-  //   });
-  // };
-
-  handleClick = () => {
-    // this.setState({
-    //   clicks: this.state.clicks + 1,
-    // });
-    console.log(`Incoming from button`);
+  addToCart = (product) => {
+    this.setState({
+      clicks: this.state.order.push(product),
+    });
+    console.log(JSON.stringify(this.state.order));
   };
 
   render() {
@@ -44,12 +36,12 @@ class Menu extends React.Component {
                 </p>
                 <p className="card-text ">Rs {product.ItemPrice}</p>
                 <p className="card-text">{product.Category}</p>
-                <button onClick={this.handleClick} className="btn btn-danger">
+                <button
+                  onClick={this.addToCart.bind(this, product)}
+                  className="btn btn-danger"
+                >
                   Add to Cart
                 </button>
-                {/* <button onClick={this.addToCart} className="btn btn-danger">
-                Add to Cart
-                </button> */}
               </div>
             </div>
           </div>
