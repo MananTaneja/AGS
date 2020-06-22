@@ -10,7 +10,7 @@ class MiniCart extends React.Component {
     const cartItem = (
       <li className="list-group-item d-flex justify-content-between">
         <p>Cart Item</p>
-        <p> Rs. 22</p>
+        <p>₹22</p>
       </li>
     );
     const cartTotal = (

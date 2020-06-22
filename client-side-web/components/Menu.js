@@ -10,13 +10,7 @@ class Menu extends React.Component {
   }
 
   addToCart = async (product) => {
-    // const addition = this.state.order;
-    // addition.push(product);
-    // this.setState({
-    //   order: addition,
-    // });
     this.props.addOrderToCart(product.id);
-    // console.log(JSON.stringify(this.state.order));
   };
 
   render() {
