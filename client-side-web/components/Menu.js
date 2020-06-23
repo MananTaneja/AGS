@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { addOrderToCart } from "../redux/actions/cartActions";
+import classnames from "classnames";
 
 class Menu extends React.Component {
   constructor(props) {
@@ -14,6 +15,8 @@ class Menu extends React.Component {
   };
 
   render() {
+    const btnClass = "btn btn-danger";
+    const restaurantName = "McDonald's";
     const menuItems = this.props.menu.map((product, key) => (
       <li key={product.id}>
         <div className="card mb-3">
@@ -33,11 +36,11 @@ class Menu extends React.Component {
                     Sample Dietary Restrictions
                   </small>
                 </p>
-                <p className="card-text ">₹{product.ItemPrice}</p>
-                <p className="card-text">{product.Category}</p>
+                <p className="card-text ">₹ {product.ItemPrice}.00</p>
+                <p className="card-text text-muted">{product.Category}</p>
                 <button
                   onClick={this.addToCart.bind(this, product)}
-                  className="btn btn-danger"
+                  className={btnClass}
                 >
                   Add to Cart
                 </button>
@@ -50,7 +53,7 @@ class Menu extends React.Component {
     return (
       <div>
         <div className="container mt-3 mb-3" id="header">
-          <h3 className="text-center text-warning">McDonald's Menu</h3>
+          <h3 className="text-center text-warning">{restaurantName} Menu</h3>
         </div>
         {JSON.stringify(this.props.test.addedByIds)}
         <ul className="card-group d-flex flex-column ">{menuItems}</ul>

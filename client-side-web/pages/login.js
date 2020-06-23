@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 import { connect } from "react-redux";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { loginUser } from "../redux/actions/authActions";
 import Router from "next/router";
 
@@ -83,10 +83,10 @@ class Login extends React.Component {
     return (
       <Layout>
         <div className="container">
-          <div className="card d-flex mt-3 pt-3">
+          <div className="card d-flex mt-3 pt-3 shadow-sm">
             <img
-              src="https://images.unsplash.com/photo-1533035353720-f1c6a75cd8ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-              className="card-img-top border border-dark rounded-circle"
+              src="/logos/chayyos.png"
+              className="card-img-top border rounded-circle"
               alt="qsr"
             />
             <div className="card-body">
@@ -155,10 +155,10 @@ class Login extends React.Component {
   }
 }
 
-// Login.propTypes = {
-//   loginUser: PropTypes.func.isRequired,
-//   auth: PropTypes.object.isRequired
-// }
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
