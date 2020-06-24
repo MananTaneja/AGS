@@ -6,7 +6,7 @@ const Customer = db.define(
   "customer",
   {
     phoneNumber: {
-      type: Sequelize.STRING(45),
+      type: Sequelize.STRING(50),
       primaryKey: true,
     },
     name: {
