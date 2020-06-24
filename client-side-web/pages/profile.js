@@ -13,18 +13,18 @@ class Profile extends React.Component {
     return (
       <Layout>
         <div className="container">
-          <div className="jumbotron mt-5">
+          <div className="jumbotron mt-5 bg-transparent">
             <div className="col-sm-8 mx-auto">
-              <h1 className="text-center">PROFILE</h1>
+              <h3 className="text-center">Billing Details</h3>
             </div>
-            <table className="table col-md-6 mx-auto">
+            <table className="table col-md-6 mx-auto mt-4">
               <tbody>
                 <tr>
                   <td>Phone Number</td>
                   <td>{user.phoneNumber}</td>
                 </tr>
                 <tr>
-                  <td>Last Name</td>
+                  <td>Name</td>
                   <td>{user.name}</td>
                 </tr>
               </tbody>

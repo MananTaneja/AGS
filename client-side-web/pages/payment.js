@@ -23,7 +23,7 @@ class Payment extends React.Component {
     const cartTotal = (
       <div className="d-flex justify-content-between">
         <h5>Total: </h5>
-        <h5>₹0.00</h5>
+        <h5>₹ 0.00</h5>
       </div>
     );
     return (
