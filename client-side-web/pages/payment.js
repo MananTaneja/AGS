@@ -1,6 +1,8 @@
 import Layout from "../components/Layout";
 import { connect } from "react-redux";
 import { addOrderToCart } from "../redux/actions/cartActions";
+import { getMenuDetails } from "../redux/actions/productActions";
+
 
 class Payment extends React.Component {
   constructor(props) {
@@ -13,17 +15,26 @@ class Payment extends React.Component {
 
   render() {
     const quant = this.props.cart.quantityById;
+    var tot=0;
+    let menus = JSON.parse(JSON.stringify(this.props.menu));
     const itemList = this.props.cart.addedIds.map((productId) => (
+      menus.map((product)=>{
+        if(product.id===productId){
+          tot=tot+(quant[productId]*product.ItemPrice);
+          return(
       <tr>
-        <th scope="row">id: {productId}</th>
+        <th scope="row">{productId}</th>
         <td>{quant[productId]}</td>
-        <td>₹ 00.00</td>
-      </tr>
-    ));
+        <td>{product.MenuItem}</td>
+        <td>{quant[productId]}x ₹{product.ItemPrice}</td>
+      </tr>);
+        }
+      }
+    )));
     const cartTotal = (
       <div className="d-flex justify-content-between">
         <h5>Total: </h5>
-        <h5>₹ 0.00</h5>
+    <h5>₹ {tot}</h5>
       </div>
     );
     return (
@@ -39,6 +50,7 @@ class Payment extends React.Component {
                 <tr>
                   <th scope="col">Item</th>
                   <th scope="col">Quantity</th>
+                  <th scope="col">Name</th>
                   <th scope="col">Price</th>
                 </tr>
               </thead>
@@ -62,6 +74,8 @@ class Payment extends React.Component {
 
 const mapStateToProps = (state) => ({
   cart: state.cart,
+  menu: state.products.menuDetails,
+
 });
 
-export default connect(mapStateToProps, { addOrderToCart })(Payment);
+export default connect(mapStateToProps, { addOrderToCart, getMenuDetails })(Payment);
