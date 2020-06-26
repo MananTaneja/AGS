@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { addOrderToCart } from "../redux/actions/cartActions";
+import { getMenuDetails } from "../redux/actions/productActions";
 import classnames from "classnames";
 
 class Menu extends React.Component {
@@ -91,6 +92,9 @@ class Menu extends React.Component {
 
 const mapStateToProps = (state) => ({
   test: state.cart,
+  menu: state.products.menuDetails,
 });
 
-export default connect(mapStateToProps, { addOrderToCart })(Menu);
+export default connect(mapStateToProps, { addOrderToCart, getMenuDetails })(
+  Menu
+);
