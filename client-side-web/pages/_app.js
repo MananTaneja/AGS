@@ -6,6 +6,7 @@ import store from "../redux/store";
 import { createWrapper } from "next-redux-wrapper";
 import setAuthToken from "../redux/utils/setAuthToken";
 import { setCurrentUser } from "../redux/actions/authActions";
+import { getMenuDetails } from "../redux/actions/productActions";
 
 class MyApp extends App {
   componentDidMount() {
@@ -17,9 +18,11 @@ class MyApp extends App {
       setAuthToken(localStorage.jwtToken);
       // Decode token
       const decoded = jwt_decode(localStorage.jwtToken);
-      // Set user and isAuthrnticaed
+      // Set user and isAuthenticaed
       store.dispatch(setCurrentUser(decoded));
     }
+
+    store.dispatch(getMenuDetails());
   }
 
   render() {

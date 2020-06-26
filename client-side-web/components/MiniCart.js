@@ -1,3 +1,6 @@
+import { connect } from "react-redux";
+import { addOrderToCart } from "../redux/actions/cartActions";
+
 class MiniCart extends React.Component {
   constructor(props) {
     super(props);
@@ -7,12 +10,13 @@ class MiniCart extends React.Component {
   }
 
   render() {
-    const cartItem = (
+    const quant = this.props.cart.quantityById;
+    const cartItem = this.props.cart.addedIds.map((productId) => (
       <li className="list-group-item d-flex justify-content-between">
-        <p>Cart Item</p>
-        <p>₹22</p>
+        <p>{productId}</p>
+        <p>{quant[productId]}</p>
       </li>
-    );
+    ));
     const cartTotal = (
       <div className="d-flex justify-content-between list-group-item bg-dark text-white">
         <h5>Total: </h5>
@@ -31,4 +35,8 @@ class MiniCart extends React.Component {
   }
 }
 
-export default MiniCart;
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
+
+export default connect(mapStateToProps, { addOrderToCart })(MiniCart);

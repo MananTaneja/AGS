@@ -1,9 +1,24 @@
-import { GET_MENU_ITEMS } from "./types";
+import { GET_MENU_ITEMS,GET_ERRORS } from "./types";
 import axios from "axios";
 
 export const getMenuDetails = () => (dispatch) => {
   axios
-    .get(`http://localhost:50000/mcdonalds/menudetails`)
-    .then((res) => {})
-    .catch((err) => console.log(err));
+    .get(`http://localhost:5000/mcdonalds/menudetails`)
+    .then((res) => {
+      const menu = res.data;
+      dispatch(getMenu(menu));
+    
+    })
+    .catch((err) =>
+     dispatch({
+      type: GET_ERRORS,
+      payload: "Error",
+    }));
+};
+
+export const getMenu = (menu) => {
+  return {
+    type: GET_MENU_ITEMS,
+    payload:menu,
+  };
 };
