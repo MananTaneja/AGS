@@ -7,22 +7,17 @@ import MiniCart from "../components/MiniCart";
 const Index = (props) => (
   <Layout>
     <div>
-      {/* <Menu menu={props.json} /> */}
       <Menu />
+      {console.log(props.url)}
       <MiniCart />
       <style jsx>{``}</style>
     </div>
   </Layout>
 );
 
-// export const getStaticProps = async (context) => {
-//   const res = await fetch(`http://localhost:5000/mcdonalds/menudetails`);
-//   const json = await res.json();
-//   return {
-//     props: {
-//       json,
-//     },
-//   };
-// };
-
+Index.getInitialProps = async (context) => {
+  return {
+    url: context,
+  };
+};
 export default Index;

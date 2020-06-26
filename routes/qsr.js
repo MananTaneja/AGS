@@ -15,11 +15,13 @@ router.get("/:restaurant/branch-:branch_id", (req, res) => {
     .then((merchant) => {
       if (merchant) {
         // Merchant exists
-        res.json({
-          merchantName: merchant.ownerName,
-          restaurant: restaurantChain,
-          branch: branchId,
-        });
+        // res.json({
+        //   merchantName: merchant.ownerName,
+        //   restaurant: restaurantChain,
+        //   branch: branchId,
+        // });
+
+        res.redirect(`http://localhost:3000/${restaurantChain}/${branchId}`);
       }
     })
     .catch((err) => {

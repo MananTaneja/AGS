@@ -22,7 +22,7 @@ class MyApp extends App {
       store.dispatch(setCurrentUser(decoded));
     }
 
-    store.dispatch(getMenuDetails());
+    store.dispatch(getMenuDetails("mcdonalds"));
   }
 
   render() {
