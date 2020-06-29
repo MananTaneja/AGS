@@ -5,7 +5,7 @@ const Merchant = require("../models/Merchant");
 router.get("/:restaurant/branch-:branch_id", (req, res) => {
   const restaurantChain = req.params.restaurant;
   const branchId = req.params.branch_id;
-  console.log(`Front end making request for Owner Name`);
+  console.log(`QR code making request for restaurant: ${restaurantChain}`);
   Merchant.findOne({
     attributes: ["ownerName"],
     where: {
@@ -21,7 +21,9 @@ router.get("/:restaurant/branch-:branch_id", (req, res) => {
         //   branch: branchId,
         // });
 
-        res.redirect(`http://localhost:3000/${restaurantChain}/${branchId}`);
+        res.redirect(
+          `http://localhost:3000/restaurant/${restaurantChain}/branch/${branchId}`
+        );
       }
     })
     .catch((err) => {

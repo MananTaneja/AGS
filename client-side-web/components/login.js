@@ -1,12 +1,13 @@
-import Layout from "../components/Layout";
+import Layout from "./Layout";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { loginUser } from "../redux/actions/authActions";
 import Router from "next/router";
+import Head from "next/head";
 
 class Login extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       phoneNumber: "",
       name: "",
@@ -80,14 +81,39 @@ class Login extends React.Component {
     }
   };
   render() {
+    const restaurantName = this.props.restaurant;
     return (
-      <Layout>
+      <div>
+        <Head>
+          <title>Login</title>
+          <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+            crossOrigin="anonymous"
+          />
+          <script
+            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossOrigin="anonymous"
+          ></script>
+          <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossOrigin="anonymous"
+          ></script>
+          <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossOrigin="anonymous"
+          ></script>
+        </Head>
         <div className="container">
           <div className="card d-flex mt-3 pt-3 shadow-sm">
             <img
-              src="/logos/chayyos.png"
+              src={"/logos/" + restaurantName + ".png"}
               className="card-img-top border rounded-circle"
-              alt="qsr"
+              alt="image"
             />
             <div className="card-body">
               <form
@@ -150,7 +176,7 @@ class Login extends React.Component {
             }
           `}</style>
         </div>
-      </Layout>
+      </div>
     );
   }
 }

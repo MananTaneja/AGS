@@ -22,12 +22,11 @@ class MyApp extends App {
       store.dispatch(setCurrentUser(decoded));
     }
 
-    store.dispatch(getMenuDetails("mcdonalds"));
+    // store.dispatch(getMenuDetails("mcdonalds"));
   }
 
   render() {
     const { Component, pageProps } = this.props;
-
     return (
       <Provider store={store}>
         <Component {...pageProps}></Component>

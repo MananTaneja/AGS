@@ -16,8 +16,7 @@ class Menu extends React.Component {
   };
 
   render() {
-    const btnClass = "btn btn-danger";
-    const restaurantName = "McDonald's";
+    const restaurantName = this.props.restaurant;
     const menuItems = this.props.menu.map((product, key) => (
       <li key={product.id}>
         <div className="card mb-3">
@@ -41,7 +40,7 @@ class Menu extends React.Component {
                 <p className="card-text text-muted">{product.Category}</p>
                 <button
                   onClick={this.addToCart.bind(this, product)}
-                  className={btnClass}
+                  className="btn btn-danger"
                 >
                   Add to Cart
                 </button>
