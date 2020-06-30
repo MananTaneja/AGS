@@ -7,8 +7,8 @@ import MiniCart from "../components/MiniCart";
 const Index = () => (
   <Layout>
     <div>
-      <Menu />
-      <MiniCart />
+      {/* <Menu />
+      <MiniCart /> */}
       <style jsx>{``}</style>
     </div>
   </Layout>

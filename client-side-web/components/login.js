@@ -25,7 +25,7 @@ class Login extends React.Component {
 
   componentDidUpdate(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      Router.push("/", undefined, { shallow: true });
+      // Router.push("/", undefined, { shallow: true });
     }
   }
 
@@ -77,7 +77,7 @@ class Login extends React.Component {
     //validating
     if (this.handleValidation()) {
       this.props.loginUser(userData);
-      Router.push("/profile", undefined, { shallow: true });
+      Router.push("/restaurant/[restaurantName]", `/restaurant/Lmao`);
     }
   };
   render() {

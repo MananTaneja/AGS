@@ -35,6 +35,16 @@ export const setCurrentUser = (decoded) => {
   };
 };
 
+export const logoutUser = () => (dispatch) => {
+  // Removing token from localstorage
+  localStorage.removeItem("jwtToken");
+  // Removing auth headers being passed after login
+  setAuthToken(false);
+  // Set current user to empty object -> to set isAuthenticated to false
+  dispatch(setCurrentUser({}));
+};
+
+// Precious code below
 //fetch("http://localhost:5000/login", {
 //   method: "post",
 //   headers: {

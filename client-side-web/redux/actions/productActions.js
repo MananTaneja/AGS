@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getMenuDetails = (restaurantName) => (dispatch) => {
   axios
-    .get(`http://localhost:5000/${restaurantName}/menudetails`)
+    .get(`http://localhost:5000/menudetails/${restaurantName}`)
     .then((res) => {
       const menu = res.data;
       dispatch(getMenu(menu));

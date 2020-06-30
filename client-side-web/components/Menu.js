@@ -12,13 +12,13 @@ class Menu extends React.Component {
   }
 
   addToCart = async (product) => {
-    this.props.addOrderToCart(product.id);
+    this.props.addOrderToCart(product.menuID);
   };
 
   render() {
     const restaurantName = this.props.restaurant;
     const menuItems = this.props.menu.map((product, key) => (
-      <li key={product.id}>
+      <li key={product.menuID}>
         <div className="card mb-3">
           <div className="row no-gutters">
             <div className="col-md-4">
@@ -30,14 +30,14 @@ class Menu extends React.Component {
             </div>
             <div className="col-md-8">
               <div className="card-body bg-light text-center">
-                <h5 className="card-title">{product.MenuItem}</h5>
+                <h5 className="card-title">{product.menuItem}</h5>
                 <p className="card-text">
                   <small className="text-muted">
                     Sample Dietary Restrictions
                   </small>
                 </p>
-                <p className="card-text ">₹ {product.ItemPrice}.00</p>
-                <p className="card-text text-muted">{product.Category}</p>
+                <p className="card-text ">₹ {product.itemPrice}.00</p>
+                <p className="card-text text-muted">{product.category}</p>
                 <button
                   onClick={this.addToCart.bind(this, product)}
                   className="btn btn-danger"
@@ -55,9 +55,17 @@ class Menu extends React.Component {
         <div className="container mt-3 mb-3" id="header">
           <h3 className="text-center text-warning">{restaurantName} Menu</h3>
         </div>
-        {JSON.stringify(this.props.test.addedByIds)}
+        {/* {JSON.stringify(this.props.test.addedByIds)} */}
         <ul className="card-group d-flex flex-column ">{menuItems}</ul>
         {/* Have added these below break lines as cart is fixed at bottom */}
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <br />
         <br />
         <br />
@@ -90,7 +98,6 @@ class Menu extends React.Component {
 // Redux commands
 
 const mapStateToProps = (state) => ({
-  test: state.cart,
   menu: state.products.menuDetails,
 });
 

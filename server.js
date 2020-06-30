@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 
 app.use("/login", require("./routes/login"));
 
-app.use("/mcdonalds", require("./routes/mcdonalds"));
+app.use("/menudetails", require("./routes/menuDetails"));
 
 app.use("/ongo/qsr", require("./routes/qsr"));
 

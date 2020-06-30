@@ -21,13 +21,15 @@ router.get("/:restaurant/branch-:branch_id", (req, res) => {
         //   branch: branchId,
         // });
 
-        res.redirect(
-          `http://localhost:3000/restaurant/${restaurantChain}/branch/${branchId}`
-        );
+        res.redirect(`http://localhost:3000/restaurant/${restaurantChain}`);
+      } else {
+        res.send(`No merchant found with Restaurant Name: ${restaurantChain}`);
       }
     })
     .catch((err) => {
-      res.send(`No merchant found with Restaurant Name: ${restaurantChain}`);
+      res.send(
+        `Database error when searching for Restaurant Name: ${restaurantChain}`
+      );
     });
 });
 

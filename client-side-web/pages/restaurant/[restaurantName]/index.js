@@ -1,21 +1,31 @@
 import { useRouter } from "next/router";
 import { getMenuDetails } from "../../../redux/actions/productActions";
-import Menu from "../../../components/Menu";
 import Layout from "../../../components/Layout";
-import Login from "../../../components/login";
 import store from "../../../redux/store";
+import Support from "./support";
 
-const Index = () => {
+const Index = (props) => {
   const router = useRouter();
-  const { restaurantName } = router.query;
-  store.dispatch(getMenuDetails(restaurantName));
+  const restaurant = router.query.restaurantName;
+  store.dispatch(getMenuDetails(restaurant));
+  // sleep(2000);
   return (
     <Layout>
-      <Menu restaurant={restaurantName} />
-
-      {console.log(restaurantName)}
+      <Support restaurant={restaurant} />
+      {console.log(restaurant)}
     </Layout>
   );
 };
+
+function sleep(milliseconds) {
+  let timeStart = new Date().getTime();
+  while (true) {
+    console.log("Waiting...");
+    let elapsedTime = new Date().getTime() - timeStart;
+    if (elapsedTime > milliseconds) {
+      break;
+    }
+  }
+}
 
 export default Index;
