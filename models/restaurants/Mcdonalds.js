@@ -1,8 +1,8 @@
 const Sequelize = require("sequelize");
 
-const db = require("../config/db");
+const db = require("../../config/db");
 
-const McdMenu = db.define(
+const Mcdonalds = db.define(
   "McdMenu",
   {
     ID: {
@@ -31,4 +31,4 @@ const McdMenu = db.define(
   }
 );
 
-module.exports = McdMenu;
+module.exports = Mcdonalds;
