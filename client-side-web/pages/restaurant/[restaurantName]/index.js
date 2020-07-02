@@ -7,7 +7,7 @@ import Support from "./support";
 const Index = (props) => {
   const router = useRouter();
   const restaurant = router.query.restaurantName;
-  store.dispatch(getMenuDetails(restaurant));
+  //store.dispatch(getMenuDetails(restaurant));
   // sleep(2000);
   return (
     <Layout>

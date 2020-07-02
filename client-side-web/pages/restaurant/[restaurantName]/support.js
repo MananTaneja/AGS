@@ -2,6 +2,9 @@ import { connect } from "react-redux";
 import Login from "../../../components/login";
 import Menu from "../../../components/Menu";
 import MiniCart from "../../../components/MiniCart";
+import { getMenuDetails } from "../../../redux/actions/productActions";
+import store from "../../../redux/store";
+
 
 class Support extends React.Component {
   constructor(props) {
@@ -9,9 +12,15 @@ class Support extends React.Component {
     this.state = {};
   }
 
+  componentDidMount (){
+    const restaurant = this.props.restaurant;
+    store.dispatch(getMenuDetails(restaurant));
+  }
+
   render() {
     const { isAuthenticated } = this.props.auth;
     const restaurant = this.props.restaurant;
+    //store.dispatch(getMenuDetails(restaurant));
     const authLinks = (
       <div>
         <Menu restaurant={restaurant} />

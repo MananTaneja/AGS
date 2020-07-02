@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Mcdonalds = require("../models/restaurants/Mcdonalds");
+const Menudetails = require("../models/restaurants/Menudetails");
+const Merchant = require("../models/Merchant");
+
 const Lmao = require("../models/restaurants/Lmao");
 
 // Code for a-la carte
@@ -13,13 +16,14 @@ router.get("/:restaurant", (req, res) => {
   const restaurant = req.params.restaurant;
   console.log(`the client side is requesting for menu details: ${restaurant}`);
   const dictionary = {
-    mcdonalds: Mcdonalds,
-    lmao: Lmao,
+    MCD: 11,
+    KFC: 10,
   };
-  // console.log(`${dictionary[restaurant]}`);
-  dictionary[restaurant]
-    .findAll({
-      attributes: ["menuID", "menuItem", "itemPrice", "category"],
+  //console.log(`${dictionary[restaurant]}`);
+  //dictionary[restaurant]
+  Menudetails.findAll({
+    where: {restID: dictionary[restaurant] },
+  attributes: ["menuID", "menuItem", "itemPrice", "category"],
     })
     .then((menu) => {
       res.json(menu);

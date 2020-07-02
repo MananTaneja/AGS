@@ -1,7 +1,7 @@
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 import { connect } from "react-redux";
-import { addOrderToCart } from "../redux/actions/cartActions";
-import { getMenuDetails } from "../redux/actions/productActions";
+import { addOrderToCart } from "../../redux/actions/cartActions";
+import { getMenuDetails } from "../../redux/actions/productActions";
 
 
 class Payment extends React.Component {
