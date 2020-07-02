@@ -75,9 +75,10 @@ class Login extends React.Component {
       name: this.state.name,
     };
     //validating
+    const restaurantName = this.props.restaurant;
     if (this.handleValidation()) {
       this.props.loginUser(userData);
-      Router.push("/restaurant/[restaurantName]", `/restaurant/Lmao`);
+      Router.push("/restaurant/[restaurantName]", `/restaurant/${restaurantName}`);
     }
   };
   render() {

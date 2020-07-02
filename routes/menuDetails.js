@@ -14,7 +14,7 @@ router.get("/:restaurant", (req, res) => {
   console.log(`the client side is requesting for menu details: ${restaurant}`);
   const dictionary = {
     mcdonalds: Mcdonalds,
-    Lmao: Lmao,
+    lmao: Lmao,
   };
   // console.log(`${dictionary[restaurant]}`);
   dictionary[restaurant]
