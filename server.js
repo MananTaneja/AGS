@@ -31,5 +31,7 @@ app.use("/menudetails", require("./routes/menuDetails"));
 
 app.use("/ongo/qsr", require("./routes/qsr"));
 
+app.use("/s3image", require("./routes/s3image"));
+
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server started on port ${port}`));

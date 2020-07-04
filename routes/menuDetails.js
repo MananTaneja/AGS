@@ -23,7 +23,7 @@ router.get("/:restaurant", (req, res) => {
   //dictionary[restaurant]
   Menudetails.findAll({
     where: {restID: dictionary[restaurant] },
-  attributes: ["menuID", "menuItem", "itemPrice", "category"],
+  attributes: ["menuID", "menuItem", "itemPrice", "category", "restID"],
     })
     .then((menu) => {
       res.json(menu);
