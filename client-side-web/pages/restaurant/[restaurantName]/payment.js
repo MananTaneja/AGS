@@ -1,40 +1,41 @@
-import Layout from "../components/Layout";
+import Layout from "../../../components/Layout";
 import { connect } from "react-redux";
-import { addOrderToCart } from "../redux/actions/cartActions";
-import { getMenuDetails } from "../redux/actions/productActions";
-
+import { addOrderToCart } from "../../../redux/actions/cartActions";
+import { getMenuDetails } from "../../../redux/actions/productActions";
 
 class Payment extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  makePayment() {
-    alert("You will be forwarded to the payment gateway!");
-  }
+  makePayment = async () => {
+    alert("You will be redirected to payment page now!");
+  };
 
   render() {
     const quant = this.props.cart.quantityById;
-    var tot=0;
-    let menus = JSON.parse(JSON.stringify(this.props.menu));
-    const itemList = this.props.cart.addedIds.map((productId) => (
-      menus.map((product)=>{
-        if(product.id===productId){
-          tot=tot+(quant[productId]*product.ItemPrice);
-          return(
-      <tr>
-        <th scope="row">{productId}</th>
-        <td>{quant[productId]}</td>
-        <td>{product.MenuItem}</td>
-        <td>{quant[productId]}x ₹{product.ItemPrice}</td>
-      </tr>);
+    var tot = 0;
+
+    const menus = this.props.menu;
+    console.log(JSON.stringify(menus));
+    const itemList = this.props.cart.addedIds.map((productId) =>
+      menus.map((product) => {
+        if (product.menuID === productId) {
+          tot = tot + quant[productId] * product.itemPrice;
+          return (
+            <tr key={productId}>
+              <th scope="row">{product.menuItem}</th>
+              <td>{quant[productId]}</td>
+              <td>₹{product.itemPrice}</td>
+            </tr>
+          );
         }
-      }
-    )));
+      })
+    );
     const cartTotal = (
       <div className="d-flex justify-content-between">
         <h5>Total: </h5>
-    <h5>₹ {tot}</h5>
+        <h5>₹ {tot}</h5>
       </div>
     );
     return (
@@ -48,9 +49,8 @@ class Payment extends React.Component {
             <table className="table col-md-6 mx-auto text-center">
               <thead>
                 <tr>
-                  <th scope="col">Item</th>
-                  <th scope="col">Quantity</th>
                   <th scope="col">Name</th>
+                  <th scope="col">Quantity</th>
                   <th scope="col">Price</th>
                 </tr>
               </thead>
@@ -75,7 +75,8 @@ class Payment extends React.Component {
 const mapStateToProps = (state) => ({
   cart: state.cart,
   menu: state.products.menuDetails,
-
 });
 
-export default connect(mapStateToProps, { addOrderToCart, getMenuDetails })(Payment);
+export default connect(mapStateToProps, { addOrderToCart, getMenuDetails })(
+  Payment
+);

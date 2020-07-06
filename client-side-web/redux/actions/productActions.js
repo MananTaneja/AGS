@@ -1,4 +1,4 @@
-import { GET_MENU_ITEMS, GET_ERRORS } from "./types";
+import { GET_MENU_ITEMS, GET_ERRORS, SET_MENU_ITEMS } from "./types";
 import axios from "axios";
 
 export const getMenuDetails = (restaurantName) => (dispatch) => {
@@ -6,6 +6,8 @@ export const getMenuDetails = (restaurantName) => (dispatch) => {
     .get(`http://localhost:5000/menudetails/${restaurantName}`)
     .then((res) => {
       const menu = res.data;
+      localStorage.setItem("menuDetails", JSON.stringify(menu));
+
       dispatch(getMenu(menu));
     })
     .catch((err) =>
@@ -19,6 +21,13 @@ export const getMenuDetails = (restaurantName) => (dispatch) => {
 export const getMenu = (menu) => {
   return {
     type: GET_MENU_ITEMS,
+    payload: menu,
+  };
+};
+
+export const setMenu = (menu) => {
+  return {
+    type: SET_MENU_ITEMS,
     payload: menu,
   };
 };

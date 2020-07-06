@@ -10,53 +10,49 @@ class Menu extends React.Component {
     this.state = {
       cart: [],
       isfound: false,
-      data: props.menu.map(el => null)
+      data: props.menu.map((el) => null),
     };
   }
 
   addToCart = async (product) => {
     this.props.addOrderToCart(product.menuID);
   };
-  getimg = async (data,i) =>{ 
+  getimg = async (data, i) => {
     await new Promise((resolve, reject) => {
-    console.log("print "+data);
-    axios
-    .get(`http://localhost:5000/s3image/${data}`)
-    .then((res) => {
-      //console.log(i)
-      //console.log(res)
-      //let image="<img src='data:image/jpeg;base64," + res.data.data + "'" + "/>";
-      //console.log(image)
-      const ldata = this.state.data;
-      ldata[i] = <img
-      src={`data:image/jpeg;base64,${res.data.data}`}
-      className="card-img"
-      alt="menu prod"
-    />;
-      if(i == this.props.menu.length - 1) {
-      this.setState({ data: ldata, isfound: true })
-      }
-      else {
-      this.setState({data: ldata })
-      }
-      
-    })
-    .catch((err) =>{
-      console.log(err);
-    }
-    );
-  })
-  }
+      console.log("print " + data);
+      axios
+        .get(`http://localhost:5000/s3image/${data}`)
+        .then((res) => {
+          //console.log(i)
+          //console.log(res)
+          //let image="<img src='data:image/jpeg;base64," + res.data.data + "'" + "/>";
+          //console.log(image)
+          const ldata = this.state.data;
+          ldata[i] = (
+            <img
+              src={`data:image/jpeg;base64,${res.data.data}`}
+              className="card-img"
+              alt="menu prod"
+            />
+          );
+          if (i == this.props.menu.length - 1) {
+            this.setState({ data: ldata, isfound: true });
+          } else {
+            this.setState({ data: ldata });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  };
 
- componentDidMount()
- {
-  for(let i=0;i<this.props.menu.length;i++)
-  {
-    let product=this.props.menu[i]
-    this.getimg(`${product.restID}_${product.menuItem}`,i)
-  } 
-   
- }
+  componentDidMount() {
+    for (let i = 0; i < this.props.menu.length; i++) {
+      let product = this.props.menu[i];
+      this.getimg(`${product.restID}_${product.menuItem}`, i);
+    }
+  }
 
   render() {
     const restaurantName = this.props.restaurant;
@@ -65,7 +61,7 @@ class Menu extends React.Component {
         <div className="card mb-3">
           <div className="row no-gutters">
             <div className="col-md-4">
-            {this.state.isfound ? this.state.data[key] : "Loading"}
+              {this.state.isfound ? this.state.data[key] : "Loading"}
               {/* <img
                 src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80"
                 className="card-img"

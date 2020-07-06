@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { addOrderToCart } from "../redux/actions/cartActions";
 import { getMenuDetails } from "../redux/actions/productActions";
+import Router from "next/router";
 
 class MiniCart extends React.Component {
   constructor(props) {
@@ -10,11 +11,19 @@ class MiniCart extends React.Component {
     };
   }
 
+  proceedToPayment = async () => {
+    const restaurantName = this.props.restaurant;
+    Router.push(
+      "/restaurant/[restaurantName]/payment",
+      `/restaurant/${restaurantName}/payment`
+    );
+  };
+
   render() {
     const quant = this.props.cart.quantityById;
     let tot = 0;
 
-    let menus = JSON.parse(JSON.stringify(this.props.menu));
+    const menus = this.props.menu;
     const cartItem = this.props.cart.addedIds.map((productId, key) =>
       menus.map((product) => {
         if (product.menuID === productId) {
@@ -36,9 +45,14 @@ class MiniCart extends React.Component {
       })
     );
     const cartTotal = (
-      <div className="d-flex justify-content-between list-group-item bg-dark text-white">
-        <h5>Total: </h5>
-        <h5>₹{tot}</h5>
+      <div className="d-flex justify-content-end list-group-item bg-dark text-white">
+        <button
+          type="button"
+          className="btn btn-success"
+          onClick={this.proceedToPayment.bind(this)}
+        >
+          ₹ {tot}
+        </button>
       </div>
     );
     return (

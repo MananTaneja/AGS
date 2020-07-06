@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Navbar from "./NavBar";
 
 const Layout = (props) => {
   return (
@@ -28,7 +27,6 @@ const Layout = (props) => {
           crossOrigin="anonymous"
         ></script>
       </Head>
-      <Navbar />
       {props.children}
     </div>
   );
