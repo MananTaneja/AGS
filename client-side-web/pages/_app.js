@@ -10,8 +10,6 @@ import { getMenuDetails } from "../redux/actions/productActions";
 
 class MyApp extends App {
   componentDidMount() {
-    // This is the logic to keep the state of the app even on refresh!
-
     // Check if token already in local storage
     if (localStorage.jwtToken) {
       // Set token header back
@@ -21,8 +19,6 @@ class MyApp extends App {
       // Set user and isAuthenticaed
       store.dispatch(setCurrentUser(decoded));
     }
-
-    // store.dispatch(getMenuDetails("mcdonalds"));
   }
 
   render() {
