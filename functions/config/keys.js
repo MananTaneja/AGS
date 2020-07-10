@@ -6,4 +6,6 @@ module.exports = {
   accessKeyId: "AKIAIWDHAE7JYKGBGVHQ",
   secretAccessKey: "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",
   Bucket: "agsrestaurant",
+  mongoURI:
+    "mongodb+srv://manan:4J30ugQiV2mmE3eZ@ongobilling.szuxe.mongodb.net/ongoBilling?retryWrites=true&w=majority",
 };
