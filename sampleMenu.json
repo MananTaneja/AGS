@@ -1,0 +1,74 @@
+{
+  "categories": [
+    {
+      "categoryName": "Burgers",
+      "subCategories": [
+        {
+          "subCategoryName": "Veg",
+          "items": [
+            {
+              "itemId": 1,
+              "itemName": "McVeggie",
+              "itemPrice": 99
+            },
+            {
+              "itemId": 2,
+              "itemName": "Aloo Tikki",
+              "itemPrice": 60
+            }
+          ]
+        },
+        {
+          "subCategoryName": "Non-Veg",
+          "items": [
+            {
+              "itemId": 3,
+              "itemName": "Mc Chicken",
+              "itemPrice": 140
+            },
+            {
+              "itemId": 4,
+              "itemName": "American Cheese Non-Veg",
+              "itemPrice": 160
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "categoryName": "Wraps",
+      "subCategories": [
+        {
+          "subCategoryName": "Veg",
+          "items": [
+            {
+              "itemId": 5,
+              "itemName": "Aloo Wrap",
+              "itemPrice": 150
+            },
+            {
+              "itemId": 6,
+              "itemName": "Paneer Wrap",
+              "itemPrice": 180
+            }
+          ]
+        },
+        {
+          "subCategoryName": "Non-Veg",
+          "items": [
+            {
+              "itemId": 7,
+              "itemName": "Chicken Wrap",
+              "itemPrice": 190
+            },
+            {
+              "itemId": 8,
+              "itemName": "Big Spicy Chicken Wrap",
+              "itemPrice": 280
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
