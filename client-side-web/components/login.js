@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { loginUser } from "../redux/actions/authActions";
 import Router from "next/router";
 import Head from "next/head";
+import classNames from "classnames";
 
 class Login extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class Login extends React.Component {
     this.state = {
       phoneNumber: "",
       name: "",
+      legal: false,
       //error class
       errors: {
         error1: "Just for logging you in session!",
@@ -21,6 +23,7 @@ class Login extends React.Component {
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onAgree = this.onAgree.bind(this);
   }
 
   componentDidUpdate(nextProps) {
@@ -67,6 +70,14 @@ class Login extends React.Component {
     return formIsValid;
   }
 
+  onAgree = async (event) => {
+    event.preventDefault();
+
+    this.setState({
+      legal: true,
+    });
+  };
+
   onSubmit = async (event) => {
     event.preventDefault();
 
@@ -86,116 +97,112 @@ class Login extends React.Component {
   };
   render() {
     const restaurantName = this.props.restaurant;
+    const legalClass = classNames({
+      modal: true,
+      "is-active is-clipped": !this.state.legal,
+    });
     return (
-      <div>
-        <Head>
-          <title>Login</title>
-          <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-            crossOrigin="anonymous"
-          />
-          <script
-            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossOrigin="anonymous"
-          ></script>
-          <script
-            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossOrigin="anonymous"
-          ></script>
-          <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-            crossOrigin="anonymous"
-          ></script>
-        </Head>
-        <div className="container">
-          <div className="card d-flex mt-3 pt-3 shadow-sm">
-            <img
-              src={"/logos/" + restaurantName + ".png"}
-              className="card-img-top border rounded-circle"
-              alt="image"
-            />
-            <div className="card-body">
-              <form
-                // action="http://localhost:5000/login"
-                // method="POST"
-                onSubmit={this.onSubmit}
-                className="d-flex flex-column"
-              >
-                <div className="form-group">
-                  <label htmlFor="phoneNumber">Phone Number</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter Phone Number"
-                    name="phoneNumber"
-                    value={this.state.phoneNumber}
-                    onChange={this.onChange}
-                    required
-                  />
-                  <small>
-                    <span style={{ color: this.state.errors["errorcolor1"] }}>
-                      {this.state.errors["error1"]}
-                    </span>
-                  </small>
-                  {/* <small className="form-text text-muted">
-                    Just for logging you in session!
-                  </small> */}
-                </div>
-                <div className="form-group">
-                  <label htmlFor="phoneNumber">Name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter Name"
-                    name="name"
-                    value={this.state.name}
-                    onChange={this.onChange}
-                    required
-                  />
-                  <small>
-                    <span style={{ color: this.state.errors["errorcolor2"] }}>
-                      {this.state.errors["error2"]}
-                    </span>
-                  </small>
-                  {/* <small className="form-text text-muted">
-                    For Billing Purposes
-                  </small> */}
-                </div>
-                <button className="btn btn-dark" type="submit" value="Submit">
-                  Submit
+      <Layout>
+        <div>
+          <div className={legalClass}>
+            <div className="modal-background"></div>
+            <div className="modal-card">
+              <header className="modal-card-head">
+                <p className="modal-card-title">TnC</p>
+              </header>
+              <section className="modal-card-body">
+                <p>Sample Legal terms and conditions</p>
+              </section>
+              <footer className="modal-card-foot">
+                <button className="button is-success" onClick={this.onAgree}>
+                  Agree
                 </button>
-              </form>
+                <button className="button">Disagree</button>
+              </footer>
             </div>
           </div>
-          <footer className="footer">
-            <div className="content has-text-centered">
-              <p>
-                <strong>Bulma</strong> by{" "}
-                <a href="https://jgthms.com">Jeremy Thomas</a>. The source code
-                is licensed
-                <a href="http://opensource.org/licenses/mit-license.php">MIT</a>
-                . The website content is licensed{" "}
-                <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
-                  CC BY NC SA 4.0
-                </a>
-                .
-              </p>
+          <div className="container">
+            <div className="card d-flex mt-3 pt-3 shadow-sm">
+              <img
+                src={"/logos/" + restaurantName + ".png"}
+                className="card-img-top border rounded-circle"
+                alt="image"
+              />
+              <div className="card-body">
+                <form onSubmit={this.onSubmit} className="d-flex flex-column">
+                  <div className="form-group">
+                    <label htmlFor="phoneNumber">Phone Number</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Enter Phone Number"
+                      name="phoneNumber"
+                      value={this.state.phoneNumber}
+                      onChange={this.onChange}
+                      required
+                    />
+                    <small>
+                      <span style={{ color: this.state.errors["errorcolor1"] }}>
+                        {this.state.errors["error1"]}
+                      </span>
+                    </small>
+                    {/* <small className="form-text text-muted">
+                    Just for logging you in session!
+                  </small> */}
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="phoneNumber">Name</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Enter Name"
+                      name="name"
+                      value={this.state.name}
+                      onChange={this.onChange}
+                      required
+                    />
+                    <small>
+                      <span style={{ color: this.state.errors["errorcolor2"] }}>
+                        {this.state.errors["error2"]}
+                      </span>
+                    </small>
+                    {/* <small className="form-text text-muted">
+                    For Billing Purposes
+                  </small> */}
+                  </div>
+                  <button className="btn btn-dark" type="submit" value="Submit">
+                    Submit
+                  </button>
+                </form>
+              </div>
             </div>
-          </footer>
-          <style jsx>{`
-            img {
-              height: 10rem;
-              width: 10rem;
-              margin: auto;
-            }
-          `}</style>
+            <footer className="footer">
+              <div className="content has-text-centered">
+                <p>
+                  <strong>Bulma</strong> by{" "}
+                  <a href="https://jgthms.com">Jeremy Thomas</a>. The source
+                  code is licensed
+                  <a href="http://opensource.org/licenses/mit-license.php">
+                    MIT
+                  </a>
+                  . The website content is licensed{" "}
+                  <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+                    CC BY NC SA 4.0
+                  </a>
+                  .
+                </p>
+              </div>
+            </footer>
+            <style jsx>{`
+              img {
+                height: 10rem;
+                width: 10rem;
+                margin: auto;
+              }
+            `}</style>
+          </div>
         </div>
-      </div>
+      </Layout>
     );
   }
 }

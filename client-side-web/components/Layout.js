@@ -26,7 +26,10 @@ const Layout = (props) => {
           integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
           crossOrigin="anonymous"
         ></script>
-        <link rel="stylesheet" href={`../node_modules/bulma/css/bulma.css`} />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"
+        />
       </Head>
       {props.children}
     </div>
