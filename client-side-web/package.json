@@ -12,6 +12,8 @@
     "bulma": "^0.9.0",
     "classnames": "^2.2.6",
     "jwt-decode": "^2.2.0",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.22",
     "next": "9.4.4",
     "next-redux-wrapper": "^6.0.2",
     "react": "16.13.1",

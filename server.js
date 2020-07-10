@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-// const con = require("./config/db");
+const con = require("./config/mongodb");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const app = express();
@@ -10,6 +10,11 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+con.on('error', console.error.bind(console, 'connection error:'));
+con.once('open', function() {
+  console.log("we're connected");
+  // we're connected!
+});
 // // Passport Middleware
 // app.use(passport.initialize());
 
