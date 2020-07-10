@@ -37,4 +37,8 @@ function sleep(milliseconds) {
   }
 }
 
+Index.getInitialProps = async (ctx) => {
+  console.log(JSON.stringify(ctx.pathname));
+};
+
 export default Index;
