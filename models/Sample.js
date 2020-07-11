@@ -22,13 +22,19 @@ const SampleSchema = new Schema(
             itemPrice: {
               type: Number,
             },
+            picture: {
+              type: String,
+            },
           },
         ],
       },
     ],
   },
   {
+    //collection: "2_kfc_menu",
+    //collection: "dominos",
     collection: "sampleMenu",
+
   }
 );
 

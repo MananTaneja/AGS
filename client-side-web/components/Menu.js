@@ -9,7 +9,7 @@ class Menu extends React.Component {
     super(props);
     this.state = {
       cart: [],
-      isfound: false,
+      isfound: true,
       data: props.menu.map((el) => null),
     };
   }
@@ -48,14 +48,27 @@ class Menu extends React.Component {
   };
 
   componentDidMount() {
+    let c=0;
     for (let i = 0; i < this.props.menu.length; i++) {
       let product = this.props.menu[i];
-      this.getimg(`${product.restID}_${product.menuItem}`, i);
+      {
+        for(let j=0;j<product.subCategories.length;j++){
+          let subcat=product.subCategories[j];
+          for(let k=0;k<subcat.items.length;k++)
+          {
+            let it= subcat.items[k];
+            this.getimg(`s_${it.itemName}`, c);
+            c=c+1;
+          }
+        }
+      }
+      //this.getimg(`${product.restID}_${product.menuItem}`, i);
     }
   }
 
   render() {
     const restaurantName = this.props.restaurant;
+    let c=-1;
     const menuItems = this.props.menu.map((product, key) => {
       return(
         <div>
@@ -66,12 +79,15 @@ class Menu extends React.Component {
             <h3>{subcat.subCategoryName}</h3>
             {subcat.items.map((it) =>{
           //console.log(it.itemName);
+          //console.log(c);
+          c=c+1;          
           return(
         <li key={product.menuID}>
         <div className="card mb-3">
           <div className="row no-gutters">
             <div className="col-md-4">
-              {/* {this.state.isfound ? this.state.data[key] : "Loading"} */}
+              {this.state.isfound ? this.state.data[c] : "Loading"}
+              
               {/* <img
                 src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80"
                 className="card-img"
@@ -98,7 +114,9 @@ class Menu extends React.Component {
             </div>
           </div>
         </div>
-            </li>)})}
+            </li>)
+          
+          })}
 
             </div>
 
