@@ -25,17 +25,19 @@ class MiniCart extends React.Component {
 
     const menus = this.props.menu;
     const cartItem = this.props.cart.addedIds.map((productId, key) =>
-      menus.map((product) => {
-        if (product.menuID === productId) {
-          tot = tot + quant[productId] * product.itemPrice;
+    menus.map((product, key) => 
+      product.subCategories.map((subcat) =>
+        subcat.items.map((it) =>{
+        if (it.itemId === productId) {
+          tot = tot + quant[productId] * it.itemPrice;
 
           return (
             <li
               className="list-group-item d-flex justify-content-between p-0 m-0"
               key={productId}
             >
-              <p>{product.menuItem}</p>
-              <p>₹{product.itemPrice}</p>
+              <p>{it.itemName}</p>
+              <p>₹{it.itemPrice}</p>
               <span className="badge badge-primary badge-pill h-25">
                 {quant[productId]}
               </span>
@@ -43,7 +45,7 @@ class MiniCart extends React.Component {
           );
         }
       })
-    );
+    )));
     const cartTotal = (
       <div className="d-flex justify-content-end list-group-item bg-dark text-white">
         <button

@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getMenuDetails = (restaurantName) => (dispatch) => {
   axios
-    .get(`http://localhost:5000/menudetails/${restaurantName}`)
+    .get(`http://localhost:5000/test/all`)
     .then((res) => {
       const menu = res.data;
       localStorage.setItem("menuDetails", JSON.stringify(menu));

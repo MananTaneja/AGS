@@ -17,21 +17,22 @@ class Payment extends React.Component {
     var tot = 0;
 
     const menus = this.props.menu;
-    console.log(JSON.stringify(menus));
-    const itemList = this.props.cart.addedIds.map((productId) =>
-      menus.map((product) => {
-        if (product.menuID === productId) {
-          tot = tot + quant[productId] * product.itemPrice;
+    const cartItem = this.props.cart.addedIds.map((productId, key) =>
+    menus.map((product, key) => 
+      product.subCategories.map((subcat) =>
+        subcat.items.map((it) =>{
+        if (it.itemId === productId) {
+          tot = tot + quant[productId] * it.itemPrice;
           return (
             <tr key={productId}>
-              <th scope="row">{product.menuItem}</th>
+              <th scope="row">{it.itemName}</th>
               <td>{quant[productId]}</td>
-              <td>₹{product.itemPrice}</td>
+              <td>₹{it.itemPrice}</td>
             </tr>
           );
         }
       })
-    );
+    )));
     const cartTotal = (
       <div className="d-flex justify-content-between">
         <h5>Total: </h5>
@@ -54,7 +55,7 @@ class Payment extends React.Component {
                   <th scope="col">Price</th>
                 </tr>
               </thead>
-              <tbody>{itemList}</tbody>
+              <tbody>{cartItem}</tbody>
             </table>
           </div>
           {cartTotal}
