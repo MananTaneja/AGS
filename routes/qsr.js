@@ -2,33 +2,25 @@ const express = require("express");
 const router = express.Router();
 const Merchant = require("../models/Merchant");
 
-router.get("/:restaurant/branch-:branch_id", (req, res) => {
-  const restaurantChain = req.params.restaurant;
-  const branchId = req.params.branch_id;
-  console.log(`QR code making request for restaurant: ${restaurantChain}`);
+router.get("/:restaurant", (req, res) => {
+  const restaurantName = req.params.restaurant;
+  console.log(`QR code making request for restaurant: ${restaurantName}`);
   Merchant.findOne({
     attributes: ["ownerName"],
     where: {
-      restName: restaurantChain,
+      restName: restaurantName,
     },
   })
     .then((merchant) => {
       if (merchant) {
-        // Merchant exists
-        // res.json({
-        //   merchantName: merchant.ownerName,
-        //   restaurant: restaurantChain,
-        //   branch: branchId,
-        // });
-
-        res.redirect(`http://localhost:3000/restaurant/${restaurantChain}`);
+        res.redirect(`http://localhost:3000/restaurant/${restaurantName}`);
       } else {
-        res.send(`No merchant found with Restaurant Name: ${restaurantChain}`);
+        res.send(`No merchant found with Restaurant Name: ${restaurantName}`);
       }
     })
     .catch((err) => {
       res.send(
-        `Database error when searching for Restaurant Name: ${restaurantChain}`
+        `Database error when searching for Restaurant Name: ${restaurantName}`
       );
     });
 });

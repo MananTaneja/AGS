@@ -8,7 +8,7 @@ const SampleSchema = new Schema(
     },
     subCategories: [
       {
-        subcategoryName: {
+        subCategoryName: {
           type: String,
         },
         items: [
@@ -22,19 +22,13 @@ const SampleSchema = new Schema(
             itemPrice: {
               type: Number,
             },
-            picture: {
-              type: String,
-            },
           },
         ],
       },
     ],
   },
   {
-    //collection: "2_kfc_menu",
-    //collection: "dominos",
     collection: "sampleMenu",
-
   }
 );
 
