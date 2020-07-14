@@ -21,7 +21,6 @@ const Index = (props) => {
   return (
     <Layout>
       <Home restaurant={restaurant} />
-      {console.log(restaurant)}
     </Layout>
   );
 };

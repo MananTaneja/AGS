@@ -58,71 +58,56 @@ class Menu extends React.Component {
     const restaurantName = this.props.restaurant;
     const menuItems = this.props.menu.map((product, key) => {
       return (
-        <div className="dropdown my3">
-          <div class="dropdown-trigger">
-            <button
-              class="button"
-              aria-haspopup="true"
-              aria-controls="dropdown-menu2"
-            >
-              <span>{product.categoryName}</span>
-              <span class="icon is-small">
-                <i class="fas fa-angle-down" aria-hidden="true"></i>
-              </span>
-            </button>
-          </div>
-          <div className="dropdown-menu" id="dropdown-menu2" role="menu">
-            <div className="dropdown-content">
-              {product.subCategories.map((subcat) => {
-                return (
-                  <div className="dropdown-item">
-                    <h3>{subcat.subCategoryName}</h3>
-                    {subcat.items.map((it) => {
-                      //console.log(it.itemName);
-                      return (
-                        <li key={product.menuID}>
-                          <div className="card mb-3">
-                            <div className="row no-gutters">
-                              <div className="col-md-4">
-                                {/* {this.state.isfound ? this.state.data[key] : "Loading"} */}
-                                {/* <img
-                src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80"
-                className="card-img"
-                alt="menu prod"
-              /> */}
-                              </div>
-                              <div className="col-md-8">
-                                <div className="card-body bg-light text-center">
-                                  <h5 className="card-title">{it.itemName}</h5>
-                                  <p className="card-text">
-                                    <small className="text-muted">
-                                      <h5>{product.categoryName}</h5>
-                                    </small>
-                                  </p>
-                                  <p className="card-text ">
-                                    ₹ {it.itemPrice}.00
-                                  </p>
-                                  <p className="card-text text-muted">
-                                    {product.category}
-                                  </p>
-                                  <button
-                                    onClick={this.addToCart.bind(this, it)}
-                                    className="btn btn-danger"
-                                  >
-                                    Add to Cart
-                                  </button>
-                                </div>
-                              </div>
+        <div>
+          <span>{product.categoryName}</span>
+          {product.subCategories.map((subcat) => {
+            return (
+              <div className="container">
+                <h3>
+                  {subcat.subCatsegoryName != "Others"
+                    ? subcat.subCategoryName
+                    : "1234"}
+                </h3>
+                {subcat.items.map((it) => {
+                  //console.log(it.itemName);
+                  return (
+                    <li key={product.menuID}>
+                      <div className="card mb-3">
+                        <div className="row no-gutters">
+                          <div className="col-md-4">
+                            {this.state.isfound
+                              ? this.state.data[key]
+                              : "Loading"}
+                            {/* s */}
+                          </div>
+                          <div className="col-md-8">
+                            <div className="card-body bg-light text-center">
+                              <h5 className="card-title">{it.itemName}</h5>
+                              <p className="card-text">
+                                <small className="text-muted">
+                                  <h5>{product.categoryName}</h5>
+                                </small>
+                              </p>
+                              <p className="card-text ">₹ {it.itemPrice}.00</p>
+                              <p className="card-text text-muted">
+                                {product.category}
+                              </p>
+                              <button
+                                onClick={this.addToCart.bind(this, it)}
+                                className="btn btn-danger"
+                              >
+                                Add to Cart
+                              </button>
                             </div>
                           </div>
-                        </li>
-                      );
-                    })}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })}
+              </div>
+            );
+          })}
         </div>
       );
     });
