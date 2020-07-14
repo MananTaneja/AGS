@@ -10,9 +10,19 @@ class Menu extends React.Component {
     this.state = {
       cart: [],
       isfound: false,
+      toggle: false,
       data: props.menu.map((el) => null),
     };
+
+    this.toggle = this.toggle.bind(this);
   }
+
+  toggle = (async) => {
+    const current = this.state.toggle;
+    this.setState({
+      toggle: !current,
+    });
+  };
 
   addToCart = async (it) => {
     this.props.addOrderToCart(it.itemId);
@@ -55,24 +65,32 @@ class Menu extends React.Component {
   }
 
   render() {
+    const navButton = classnames({
+      "navbar-burger": true,
+      "is-active": this.state.toggle,
+    });
+    const navbarMenu = classnames({
+      "navbar-menu": true,
+      "is-active": this.state.toggle,
+    });
     const restaurantName = this.props.restaurant;
     const menuItems = this.props.menu.map((product, key) => {
       return (
         <div>
-          <span>{product.categoryName}</span>
+          <span className="is-size-4">{product.categoryName}</span>
           {product.subCategories.map((subcat) => {
             return (
               <div className="container">
-                <h3>
+                <h3 className="is-size-5">
                   {subcat.subCatsegoryName != "Others"
                     ? subcat.subCategoryName
-                    : "1234"}
+                    : "Others"}
                 </h3>
                 {subcat.items.map((it) => {
                   //console.log(it.itemName);
                   return (
                     <li key={product.menuID}>
-                      <div className="card mb-3">
+                      <div className="card mb-3 shadow-none border-0">
                         <div className="row no-gutters">
                           <div className="col-md-4">
                             {this.state.isfound
@@ -85,7 +103,7 @@ class Menu extends React.Component {
                               <h5 className="card-title">{it.itemName}</h5>
                               <p className="card-text">
                                 <small className="text-muted">
-                                  <h5>{product.categoryName}</h5>
+                                  <h5>Product Description</h5>
                                 </small>
                               </p>
                               <p className="card-text ">₹ {it.itemPrice}.00</p>
@@ -94,7 +112,7 @@ class Menu extends React.Component {
                               </p>
                               <button
                                 onClick={this.addToCart.bind(this, it)}
-                                className="btn btn-danger"
+                                className="button is-small is-danger is-rounded is-size-6"
                               >
                                 Add to Cart
                               </button>
@@ -146,8 +164,43 @@ class Menu extends React.Component {
 
     return (
       <div>
+        <nav
+          className="navbar is-expanded"
+          role="navigation"
+          aria-label="main navigation"
+        >
+          <div className="navbar-brand navbar-start">
+            <a className="navbar-item" href="https://bulma.io">
+              <img
+                src="https://www.ongobilling.com/wp-content/uploads/2019/06/logo.png"
+                alt="Bulma: Free, open source, and modern CSS framework based on Flexbox"
+                width="160"
+                height="30"
+              />
+            </a>
+          </div>
+          <div className={navbarMenu}></div>
+          <div className="navbar-end">
+            <a
+              role="button"
+              onClick={this.toggle}
+              className={navButton}
+              data-target="navMenu"
+              aria-label="menu"
+              aria-expanded="false"
+            >
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+        </nav>
+
+        <div className="navbar-menu" id="navMenu"></div>
         <div className="container mt-3 mb-3" id="header">
-          <h3 className="text-center text-warning">{restaurantName} Menu</h3>
+          <h3 className="text-center is-size-3">
+            {restaurantName.toUpperCase()} Menu
+          </h3>
         </div>
         {/* {JSON.stringify(this.props.test.addedByIds)} */}
         <ul className="card-group d-flex flex-column ">{menuItems}</ul>

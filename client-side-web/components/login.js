@@ -80,7 +80,7 @@ class Login extends React.Component {
 
   onSubmit = async (event) => {
     event.preventDefault();
-
+    console.log("Submit clicked!");
     const userData = {
       phoneNumber: this.state.phoneNumber,
       name: this.state.name,
@@ -101,28 +101,31 @@ class Login extends React.Component {
       modal: true,
       "is-active is-clipped": !this.state.legal,
     });
+    const termsConditionsModel = (
+      <div className={legalClass}>
+        <div className="modal-background"></div>
+        <div className="modal-card">
+          <header className="modal-card-head">
+            <p className="modal-card-title">TnC</p>
+          </header>
+          <section className="modal-card-body">
+            <p>Sample Legal terms and conditions</p>
+          </section>
+          <footer className="modal-card-foot">
+            <button className="button is-success" onClick={this.onAgree}>
+              Agree
+            </button>
+            <button className="button">Disagree</button>
+          </footer>
+        </div>
+      </div>
+    );
     return (
       <Layout>
         <div>
-          <div className={legalClass}>
-            <div className="modal-background"></div>
-            <div className="modal-card">
-              <header className="modal-card-head">
-                <p className="modal-card-title">TnC</p>
-              </header>
-              <section className="modal-card-body">
-                <p>Sample Legal terms and conditions</p>
-              </section>
-              <footer className="modal-card-foot">
-                <button className="button is-success" onClick={this.onAgree}>
-                  Agree
-                </button>
-                <button className="button">Disagree</button>
-              </footer>
-            </div>
-          </div>
+          {termsConditionsModel}
           <div className="container">
-            <div className="card d-flex mt-3 pt-3 shadow-sm">
+            <div className="card d-flex mt-6 pt-3 shadow-none border-0">
               <img
                 src={"/logos/" + restaurantName + ".png"}
                 className="card-img-top border rounded-circle"
@@ -170,26 +173,22 @@ class Login extends React.Component {
                     For Billing Purposes
                   </small> */}
                   </div>
-                  <button className="btn btn-dark" type="submit" value="Submit">
+                  <button
+                    className="btn has-background-danger text-white"
+                    type="submit"
+                    value="Submit"
+                  >
                     Submit
                   </button>
                 </form>
               </div>
             </div>
-            <footer className="footer">
+            <footer className="footer fixed-bottom py-3">
               <div className="content has-text-centered">
                 <p>
-                  <strong>Bulma</strong> by{" "}
-                  <a href="https://jgthms.com">Jeremy Thomas</a>. The source
-                  code is licensed
-                  <a href="http://opensource.org/licenses/mit-license.php">
-                    MIT
-                  </a>
-                  . The website content is licensed{" "}
-                  <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
-                    CC BY NC SA 4.0
-                  </a>
-                  .
+                  {" "}
+                  Powered By <strong>ONGO Payments</strong> &copy;{" "}
+                  {new Date().getFullYear()}
                 </p>
               </div>
             </footer>
@@ -198,6 +197,9 @@ class Login extends React.Component {
                 height: 10rem;
                 width: 10rem;
                 margin: auto;
+              }
+              .fixed-bottom {
+                z-index: 0;
               }
             `}</style>
           </div>
