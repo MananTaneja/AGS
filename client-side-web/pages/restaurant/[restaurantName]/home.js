@@ -11,6 +11,8 @@ class Home extends React.Component {
     super(props);
     this.state = {
       restaurantName: "",
+      addedIds: [],
+      quantityById: {},
     };
   }
 
@@ -28,6 +30,11 @@ class Home extends React.Component {
     if (localStorage.addedIds && localStorage.quantIds) {
       const quantityById = JSON.parse(localStorage.getItem("quantIds") || []);
       const addedIds = localStorage.addedIds.split(",");
+      this.setState({
+        addedIds: addedIds,
+        quantityById: quantityById,
+      });
+      console.log("Rendering from componentDidmount");
       console.log(addedIds);
       console.log(quantityById);
       store.dispatch(setOrderCart(addedIds, quantityById));
@@ -43,6 +50,10 @@ class Home extends React.Component {
 
   render() {
     const { isAuthenticated } = this.props.auth;
+    console.log("From the render of home.js");
+
+    console.log(this.state.addedIds);
+    console.log(this.state.quantityById);
     const authLinks = (
       <div>
         <Menu restaurant={this.state.restaurantName} />
