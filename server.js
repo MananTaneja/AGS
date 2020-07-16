@@ -34,6 +34,8 @@ app.use("/menudetails", require("./routes/menuDetails"));
 
 app.use("/ongo/qsr", require("./routes/qsr"));
 
+app.use("/test", require("./routes/test"));
+
 app.use("/s3image", require("./routes/s3image"));
 
 const port = process.env.PORT || 5000;

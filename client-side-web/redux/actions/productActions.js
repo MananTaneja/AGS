@@ -6,6 +6,7 @@ export const getMenuDetails = (restaurantName) => (dispatch) => {
     .get(`http://localhost:5000/menudetails/${restaurantName}`)
     .then((res) => {
       const menu = res.data;
+      //console.log(menu);
       localStorage.setItem("menuDetails", JSON.stringify(menu));
 
       dispatch(getMenu(menu));

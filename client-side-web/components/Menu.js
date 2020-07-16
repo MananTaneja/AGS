@@ -9,6 +9,7 @@ class Menu extends React.Component {
     super(props);
     this.state = {
       cart: [],
+      addonshow: false,
       isfound: false,
       toggle: false,
       data: props.menu.map((el) => null),
@@ -25,11 +26,38 @@ class Menu extends React.Component {
   };
 
   addToCart = async (it) => {
+    event.preventDefault();
+
+    const adata={item: it.itemAddongrp};
+    //console.log(adata)
+    var addonarr = it.itemAddongrp.split(',');
+
+    for(var i=0;i<addonarr.length;i++)
+    {
+      //console.log(addonarr[i])
+      const adata={item: addonarr[i]};
+
+    axios
+        .post(`http://localhost:5000/test/render`, adata)
+        .then((res) => {
+          console.log(res)
+          //console.log(res.data);      
+          const ao=res.data;
+          console.log(ao[0].Addons.itemName)
+          // for(var i=0;i<ao.length;i++)
+          // {
+          //   console.log(ao[i].rest_id);
+          // }
+        })
+  }
+    
+    this.setState({
+      addonshow: true,
+    });
     this.props.addOrderToCart(it.itemId);
   };
   getimg = async (data, i) => {
     await new Promise((resolve, reject) => {
-      console.log("print " + data);
       axios
         .get(`http://localhost:5000/s3image/${data}`)
         .then((res) => {
@@ -39,7 +67,7 @@ class Menu extends React.Component {
           //console.log(image)
           const ldata = this.state.data;
           ldata[i] = (
-            <img
+            <img style={{height: '1'}}
               src={`data:image/jpeg;base64,${res.data.data}`}
               className="card-img"
               alt="menu prod"
@@ -57,11 +85,32 @@ class Menu extends React.Component {
     });
   };
 
+  onAgree = async (it) => {
+    event.preventDefault();
+
+    //this.props.addOrderToCart(it.itemId);
+    this.setState({
+      addonshow: false,
+    });
+    
+  };
+
   componentDidMount() {
+    let c=0;
     for (let i = 0; i < this.props.menu.length; i++) {
       let product = this.props.menu[i];
-      this.getimg(`${product.restID}_${product.menuItem}`, i);
-    }
+      {
+        for(let j=0;j<product.subCategories.length;j++){
+          let subcat=product.subCategories[j];
+          for(let k=0;k<subcat.items.length;k++)
+          {
+            let it= subcat.items[k];
+            this.getimg(`s_${it.itemName}`, c);
+            c=c+1;
+          }
+        }
+      }
+  }
   }
 
   render() {
@@ -74,6 +123,11 @@ class Menu extends React.Component {
       "is-active": this.state.toggle,
     });
     const restaurantName = this.props.restaurant;
+    let c=-1;
+    const addon = classnames({
+      modal: true,
+      "is-active is-clipped": this.state.addonshow,
+    });
     const menuItems = this.props.menu.map((product, key) => {
       return (
         <div>
@@ -88,19 +142,45 @@ class Menu extends React.Component {
                 </h3>
                 {subcat.items.map((it) => {
                   //console.log(it.itemName);
+                  c=c+1;
                   return (
                     <li key={product.menuID}>
                       <div className="card mb-3 shadow-none border-0">
                         <div className="row no-gutters">
                           <div className="col-md-4">
                             {this.state.isfound
-                              ? this.state.data[key]
+                              ? this.state.data[c]
                               : "Loading"}
                             {/* s */}
                           </div>
                           <div className="col-md-8">
-                            <div className="card-body bg-light text-center">
-                              <h5 className="card-title">{it.itemName}</h5>
+            <div className="card-body bg-light text-center">
+              <h5 className="card-title">{it.itemName}</h5>
+              <div>
+              <div className={addon}>
+            <div className="modal-background"></div>
+            <div className="modal-card">
+              <header className="modal-card-head">
+                <p className="modal-card-title">Addons</p>
+              </header>
+              <section className="modal-card-body">
+                <p>Name: Lettuce Price:  
+                <span className="badge badge-primary badge-pill h-25">
+                   20 </span>
+                </p>
+                <p>Name: Cheese Price:  
+                <span className="badge badge-primary badge-pill h-25">
+                   35 </span>
+                </p>
+              </section>
+              <footer className="modal-card-foot">
+                <button className="button is-success" onClick={this.onAgree.bind(this,it)}>
+                  Confirm
+                </button>
+              </footer>
+            </div>
+          </div>
+              </div>
                               <p className="card-text">
                                 <small className="text-muted">
                                   <h5>Product Description</h5>
