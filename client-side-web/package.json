@@ -11,7 +11,10 @@
     "axios": "^0.19.2",
     "bulma": "^0.9.0",
     "classnames": "^2.2.6",
+    "fcm-node": "^1.5.2",
+    "firebase": "^7.16.0",
     "jwt-decode": "^2.2.0",
+    "localforage": "^1.7.4",
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.22",
     "next": "9.4.4",
@@ -25,6 +28,7 @@
   },
   "proxy": "http://localhost:5000",
   "devDependencies": {
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "next-offline": "^3.0.10"
   }
 }

@@ -30,7 +30,7 @@ router.get("/:restaurant", (req, res) => {
 function resolveModel(restaurantName) {
   // Also update this if a new merchant is onboarded
   merchantMap = {
-    mcd: Sample,
+    MCD: Sample,
     kfc: KFC,
   };
 
