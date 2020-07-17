@@ -6,6 +6,7 @@ useEffect(() => {
 setToken();
 async function setToken() {
 try {
+const token1 = await firebaseCloudMessaging.init();
 const token = localStorage.getItem("TOKEN");
 console.log(token)
 if (token) {
