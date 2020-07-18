@@ -1,25 +1,46 @@
 const express = require("express");
 const router = express.Router();
-const Mcdonalds = require("../models/restaurants/Mcdonalds");
-const Menudetails = require("../models/restaurants/Menudetails");
-const Merchant = require("../models/Merchant");
+
+// Add all the Merchant Menu Models here!
+const Sample = require("../models/restaurants/Sample");
+const KFC = require("../models/restaurants/KFC");
 
 router.get("/:restaurant", (req, res) => {
-  const restaurant = req.params.restaurant;
-  console.log(`the client side is requesting for menu details: ${restaurant}`);
-  const dictionary = {
-    MCD: 11,
-    KFC: 10,
-  };
-  Menudetails.findAll({
-    where: { restID: dictionary[restaurant] },
-    attributes: ["menuID", "menuItem", "itemPrice", "category", "restID"],
-  })
+  const restaurantName = req.params.restaurant;
+  console.log(`Client is requesting menu for ${restaurantName}`);
+
+  Menu = resolveModel(restaurantName);
+  if (Menu === "Error") {
+    res.status(404).json({
+      menuErr: `Sorry! Restaurant ${restaurantName} not found`,
+    });
+  }
+
+  Menu.find()
     .then((menu) => {
       res.json(menu);
       return null;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      res.status(404).json({
+        notFound: "sample not found",
+      });
+    });
 });
+
+function resolveModel(restaurantName) {
+  // Also update this if a new merchant is onboarded
+  merchantMap = {
+    mcd: Sample,
+    kfc: KFC,
+  };
+
+  if (restaurantName in merchantMap) {
+    return merchantMap[restaurantName];
+  } else {
+    return "Error";
+  }
+}
 
 module.exports = router;

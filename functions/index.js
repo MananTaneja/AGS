@@ -10,8 +10,8 @@ const path = require("path");
 const mongodb = require("./config/mongodb");
 
 // Body Parser Middleware
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Passport Middleware
 // app.use(passport.initialize());
@@ -36,7 +36,7 @@ app.use("/menudetails", require("./routes/menuDetails"));
 
 app.use("/ongo/qsr", require("./routes/qsr"));
 
-app.use("/test", require("./routes/test"));
+app.use("/api", require("./routes/notifications"));
 
 // app.use("/s3image", require("./routes/s3image"));
 

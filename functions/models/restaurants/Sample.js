@@ -8,7 +8,7 @@ const SampleSchema = new Schema(
     },
     subCategories: [
       {
-        subcategoryName: {
+        subCategoryName: {
           type: String,
         },
         items: [
@@ -22,6 +22,26 @@ const SampleSchema = new Schema(
             itemPrice: {
               type: Number,
             },
+            veg:{
+              type:Boolean,
+            },
+            gluten:
+            {
+              type:Boolean,
+            },
+            itemDescription:
+            {
+              type:String,
+            },
+            itemAddongrp:
+            {
+              type:String,
+            },
+            itemAddon:
+            {
+              type:String,
+            }
+
           },
         ],
       },

@@ -5,7 +5,7 @@ import jwt_decode from "jwt-decode";
 
 export const loginUser = (userData) => (dispatch) => {
   axios
-    .post(`http://localhost:5000/login`, userData)
+    .post(`https://ags-restaurant.web.app/login`, userData)
     .then((res) => {
       // Save to local storage
       const token = res.data.token;
