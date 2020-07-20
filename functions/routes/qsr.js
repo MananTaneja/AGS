@@ -13,7 +13,9 @@ router.get("/:restaurant", (req, res) => {
   })
     .then((merchant) => {
       if (merchant) {
-        res.redirect(`https://ongobilling.vercel.app/${restaurantName}`);
+        res.redirect(
+          `https://ongobilling.vercel.app/restaurant/${restaurantName}`
+        );
       } else {
         res.send(`No merchant found with Restaurant Name: ${restaurantName}`);
       }
