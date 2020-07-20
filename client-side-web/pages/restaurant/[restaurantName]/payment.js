@@ -115,7 +115,7 @@ class Payment extends React.Component {
       menus.map((product, key) =>
         product.subCategories.map((subcat) =>
           subcat.items.map((it) => {
-            if (it.itemId === productId) {
+            if (it.itemId == productId) {
               tot = tot + quant[productId] * it.itemPrice;
               return (
                 <tr key={productId}>

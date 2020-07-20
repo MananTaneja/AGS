@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const Sample = require("../../models/restaurants/Sample");
-const db = require("../../config/mongodb");
+const Sample = require("../models/restaurants/Sample");
+const db = require("../config/mongodb");
 const mongoose = require("mongoose");
 //const Sampleaddongrp = require("../models/Sampleaddongrp");
-const Sampleaddon = require("../../models/Sampleaddon");
+const Sampleaddon = require("../models/Sampleaddon");
 
 router.get("/sample", (req, res) => {
   res.json({
@@ -150,10 +150,12 @@ router.get("/all", (req, res) => {
   Sample.find()
     .then((menu) => {
       res.json(menu);
+      return null;
     })
     .catch((err) =>
       res.status(404).json({
         notFound: "sample not found",
+        err: err,
       })
     );
 });
@@ -162,10 +164,12 @@ router.get("/addonall", (req, res) => {
   Sampleaddon.find()
     .then((addon) => {
       res.json(addon);
+      return null;
     })
     .catch((err) =>
       res.status(404).json({
         notFound: "sample not found",
+        err: err,
       })
     );
 });
@@ -174,10 +178,12 @@ router.get("/addongrpall", (req, res) => {
   Sampleaddongrp.find()
     .then((addon) => {
       res.json(addon);
+      return null;
     })
     .catch((err) =>
       res.status(404).json({
         notFound: "sample not found",
+        err: err,
       })
     );
 });

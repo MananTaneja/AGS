@@ -38,6 +38,10 @@ app.use("/ongo/qsr", require("./routes/qsr"));
 
 app.use("/api", require("./routes/notifications"));
 
-// app.use("/s3image", require("./routes/s3image"));
+app.use("/test", require("./routes/test"));
+
+app.use("/s3image", require("./routes/s3image"));
+
+app.use("/order", require("./routes/orderdetails"));
 
 exports.app = functions.https.onRequest(app);
