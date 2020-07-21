@@ -15,7 +15,6 @@ const mcdorderdetails = db.define(
     },
     token: {
       type: Sequelize.STRING(100),
-      primaryKey: true,
     },
     customerName: {
       type: Sequelize.STRING(45),
