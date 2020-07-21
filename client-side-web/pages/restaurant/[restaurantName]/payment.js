@@ -75,7 +75,7 @@ class Payment extends React.Component {
               };
               console.log(userData);
               axios
-                .post(`https://ags-restaurant.web.app/order`, userData)
+                .post(`https://cors-anywhere.herokuapp.com/https://ags-restaurant.web.app/order`, userData)
                 .then((res) => {
                   console.log("INSTERED");
                 })
@@ -95,7 +95,7 @@ class Payment extends React.Component {
     };
 
     axios
-      .post("https://ags-restaurant.web.app/api/send", data)
+      .post("https://cors-anywhere.herokuapp.com/https://ags-restaurant.web.app/api/send", data)
       .then((res) => {
         console.log("result");
       })
