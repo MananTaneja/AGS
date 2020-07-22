@@ -17,13 +17,16 @@ const mcdorderdetails = db.define(
       type: Sequelize.STRING(100),
       primaryKey: true,
     },
-    customerName: {
-      type: Sequelize.STRING(45),
-    },
-    menuID: {
+    
+      menuID: {
       type: Sequelize.INTEGER,
       primaryKey: true,
     },
+    
+    customerName: {
+      type: Sequelize.STRING(45),
+    },
+  
     itemName: {
       type: Sequelize.STRING(45),
     },
