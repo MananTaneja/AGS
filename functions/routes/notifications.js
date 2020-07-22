@@ -1,15 +1,15 @@
-var { google } = require("googleapis");
-var MESSAGING_SCOPE = "https://www.googleapis.com/auth/firebase.messaging";
-var SCOPES = [MESSAGING_SCOPE];
+const { google } = require("googleapis");
+const MESSAGING_SCOPE = "https://www.googleapis.com/auth/firebase.messaging";
+const SCOPES = [MESSAGING_SCOPE];
 const express = require("express");
 const router = express.Router();
 
 router.post("/send", function (req, res) {
   getAccessToken()
     .then(function (access_token) {
-      var title = req.body.title;
-      var body = req.body.body;
-      var token = req.body.token;
+      const title = req.body.title;
+      const body = req.body.body;
+      const token = req.body.token;
 
       request.post(
         {
@@ -42,8 +42,8 @@ router.post("/send", function (req, res) {
 
 function getAccessToken() {
   return new Promise(function (resolve, reject) {
-    var key = require("./service-account.json");
-    var jwtClient = new google.auth.JWT(
+    const key = require("./service-account.json");
+    const jwtClient = new google.auth.JWT(
       key.client_email,
       null,
       key.private_key,

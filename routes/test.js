@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const Sample = require("../../models/restaurants/Sample");
-const db = require("../../config/mongodb");
+const Sample = require("../models/restaurants/Sample");
+const db = require("../config/mongodb");
 const mongoose = require("mongoose");
 //const Sampleaddongrp = require("../models/Sampleaddongrp");
-const Sampleaddon = require("../../models/Sampleaddon");
+const Sampleaddon = require("../models/Sampleaddon");
 
 router.get("/sample", (req, res) => {
   res.json({
