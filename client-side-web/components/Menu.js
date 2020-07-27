@@ -146,10 +146,14 @@ class Menu extends React.Component {
                       <div className="card mb-3 shadow-none border-0">
                         <div className="row no-gutters">
                           <div className="col-md-4">
-                            {this.state.isfound
+                            {/* {this.state.isfound
                               ? this.state.data[c]
-                              : "Loading"}
-                            {/* s */}
+                              : "Loading"} */}
+                              <img style={{height: '1'}}
+                              src={`https://agsrestaurant.s3.ap-south-1.amazonaws.com/s_${it.itemName}`}
+                              className="card-img"
+                              alt="menu prod"
+                            />
                           </div>
                           <div className="col-md-8">
                             <div className="card-body bg-light text-center">
