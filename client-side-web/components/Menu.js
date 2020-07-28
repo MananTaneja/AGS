@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { addOrderToCart } from "../redux/actions/cartActions";
+import { deleteOrderFromCart } from "../redux/actions/cartActions";
 import { getMenuDetails } from "../redux/actions/productActions";
 import axios from "axios";
 import classnames from "classnames";
@@ -55,6 +56,12 @@ class Menu extends React.Component {
     });
     this.props.addOrderToCart(it.itemId);
   };
+
+  deleteFromCart = async (it) => {
+    event.preventDefault();
+    this.props.deleteOrderFromCart(it.itemId);
+  };
+
   getimg = async (data, i) => {
     await new Promise((resolve, reject) => {
       axios
@@ -203,7 +210,13 @@ class Menu extends React.Component {
                                 onClick={this.addToCart.bind(this, it)}
                                 className="button is-small is-danger is-rounded is-size-6"
                               >
-                                Add to Cart
+                                +
+                              </button>
+                              <button
+                                onClick={this.deleteFromCart.bind(this, it)}
+                                className="button is-small is-danger is-rounded is-size-6"
+                              >
+                                -
                               </button>
                             </div>
                           </div>
@@ -340,6 +353,6 @@ const mapStateToProps = (state) => ({
   menu: state.products.menuDetails,
 });
 
-export default connect(mapStateToProps, { addOrderToCart, getMenuDetails })(
+export default connect(mapStateToProps, { addOrderToCart,deleteOrderFromCart, getMenuDetails })(
   Menu
 );

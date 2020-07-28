@@ -1,4 +1,4 @@
-import { ADD_TO_CART, SET_CART_ITEMS } from "../actions/types";
+import { ADD_TO_CART, SET_CART_ITEMS, DELETE_FROM_CART } from "../actions/types";
 
 const initialState = {
   addedIds: [],
@@ -18,12 +18,18 @@ const addedIds = (state = initialState.addedIds, action) => {
 };
 
 const quantityById = (state = initialState.quantityById, action) => {
+  //const productId = action.productId;
   switch (action.type) {
     case ADD_TO_CART:
-      const productId = action.productId;
       return {
         ...state,
-        [productId]: (state[productId] || 0) + 1,
+        [action.productId]: (state[action.productId] || 0) + 1,
+      };
+      case DELETE_FROM_CART:
+      //const productId = action.productId;
+      return {
+        ...state,
+        [action.productId]: ((state[action.productId])!==1 ? (state[action.productId]) - 1: 1),
       };
     default:
       return state;
