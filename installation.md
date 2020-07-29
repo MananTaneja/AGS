@@ -55,10 +55,9 @@ This will start the front end on localhost:3000 and server on localhost:5000
 
 ### Config Directory
 
-1. db.js -
-2. keys.js
-3. mongodb.js -
-4. passport.js -
+1. db.js - connection to the mysql database
+2. keys.js - holds all the sensitive information for the table (Don't make this public)
+3. mongodb.js - connection to mongodb atlas
 
 #### Models
 
