@@ -33,6 +33,7 @@ class Payment extends React.Component {
     //     console.log(err);
 
     //   })
+    //getiing the last order id 
     axios
       .get("https://ags-restaurant.web.app/order/id")
       .then((res) => {
@@ -44,7 +45,7 @@ class Payment extends React.Component {
         console.log("error");
       });
   }
-
+// inserting the order into order table and sending notification to merchant
   makePayment = async () => {
     alert("You will be redirected to payment page now!");
 

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { firebaseCloudMessaging } from "../utils/webPush";
 import firebase from "firebase/app";
+//RECIVING NOTIFICATION
 function Final() {
   useEffect(() => {
     setToken();
